@@ -1,0 +1,63 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    /* JUST TO MAKE THE STATIC VAPORWAVE EFFECT */
+    height: 4px;
+
+    background: rgb(253, 200, 255);
+    background: linear-gradient(0deg, rgba(253, 200, 255, 1) 0%, rgba(253, 200, 255, 1) 25%, rgba(60, 200, 255, 1) 100%);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+#initial-screen {
+    display: grid;
+    grid-template-columns: 1fr 2.2fr 1fr;
+    grid-template-rows: 1fr 1.5fr; 
+    grid-gap: 10px 0px;
+
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo {
+    min-width: 500px;
+}
+
+#menu {
+    margin: 00px 20%;
+    border: 5px solid #9B0A78;
+    border-radius: 36px;
+    padding: 10px;
+    background-color: #B92896;
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    /* max-width: 250px;*/
+    min-height: 200px;
+}
+
+#bt_init {
+    width: 28vw;
+    height: 5.5vh;
+    min-height: 40px;
+
+    border-radius: 30px;
+    border: solid rgb(192, 194, 196);
+
+    background-color: rgb(212, 214, 216);
+
+    font-weight: bold;
+}
