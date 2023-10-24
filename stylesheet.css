@@ -247,3 +247,34 @@ img {
     .option-1-pushable:focus:not(:focus-visible) {
         outline: none;
     }
+
+
+/* _\\--CREDIT--//_ */
+
+#logo_credit{
+    margin: 0;
+    position: absolute;
+    margin-top: 40vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 92vw;
+}
+
+#credit_p{
+    margin: 0;        
+    position: absolute;
+    margin-top: 40vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: pre;
+
+    font-size: 5.5vh;
+    color: white;
+    -webkit-text-stroke: 3px black;
+
+    text-align: center;
+}
+
+#credit_screen b{
+    font-size: 8vh;
+}
