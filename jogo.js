@@ -12,10 +12,7 @@ function reload(){
         lifes: 3,
         key_pieces: 0 
         }
-    var tela_quiz = {
-            pergunta: {},
-            respostas: {}
-        }
+        
 function draw() {
 var canvas  = document.getElementById("tela");
 canvas.width = 800;
@@ -30,10 +27,19 @@ var button3c = [Math.floor(Math.random() * 750), Math.floor(Math.random() * 750)
 var doorc = [Math.floor(Math.random() * 750), Math.floor(Math.random() * 750)]
 
 
-
+var tela_quiz = {
+    pergunta: {},
+    respostas: {}
+}
 document.getElementById("tela_quiz").innerHTML = score
 
-
+var player = {
+speed: 256,
+width: 50,
+height: 50,
+lifes: 3,
+key_pieces: 0 
+}
 player.x = canvas.width/2 - player.width/2;
 player.y = canvas.height/2 - player.height/2;
 player.currentx = 0
@@ -96,10 +102,10 @@ for (var i = 0; i < buttons.length; i++){
         player.y+player.height >= buttons[i].y){
             color = "red"
             buttons[i].status = 1,
+            player.key_pieces += 1
             buttons[i].x = -50
             buttons[i].y = -50
             document.getElementById("tela_quiz").innerHTML = score + " " + "TESTE" + " " + player.lifes + " " + player.key_pieces + " " + gamestatus
-            quiz()
         }
 }
 if (player.key_pieces == 3) {
@@ -171,6 +177,11 @@ var main = function () {
 main();
 }
 
+
+
+function gamestart() {
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("game").style.display = "inline";}
 
 function gamestart() {
     document.getElementById("menu").style.display = "none";
