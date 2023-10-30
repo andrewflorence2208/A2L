@@ -20,6 +20,8 @@ canvas.height = 800;
 var ctx = canvas.getContext("2d");
 var playerImage = new Image();
 playerImage.src = "https://i.imgur.com/bhcTQVr.png"
+var lifesImage = new Image()
+lifesImage.src = "https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true"
 
 var button1c = [Math.floor(Math.random() * 750), Math.floor(Math.random() * 750)]
 var button2c = [Math.floor(Math.random() * 750), Math.floor(Math.random() * 750)]
@@ -33,13 +35,7 @@ var tela_quiz = {
 }
 document.getElementById("tela_quiz").innerHTML = score
 
-var player = {
-speed: 256,
-width: 50,
-height: 50,
-lifes: 3,
-key_pieces: 0 
-}
+
 player.x = canvas.width/2 - player.width/2;
 player.y = canvas.height/2 - player.height/2;
 player.currentx = 0
@@ -103,6 +99,7 @@ for (var i = 0; i < buttons.length; i++){
             color = "red"
             buttons[i].status = 1,
             player.key_pieces += 1
+            player.lifes -= 1
             buttons[i].x = -50
             buttons[i].y = -50
             document.getElementById("tela_quiz").innerHTML = score + " " + "TESTE" + " " + player.lifes + " " + player.key_pieces + " " + gamestatus
@@ -135,7 +132,7 @@ addEventListener("keyup", function (event) {
 var update = function (modifier) {
     player.currentx = player.x
     player.currenty = player.y 
-
+    if(document.getElementById("tela_quiz").style.display == "none"){
     if ("ArrowUp" in keysDown || "w" in keysDown) { // Player is holding up key
         player.y -= player.speed * modifier;
     }
@@ -147,7 +144,7 @@ var update = function (modifier) {
     }
     if ("ArrowRight" in keysDown || "d" in keysDown) { // Player is holding right key
         player.x += player.speed * modifier;
-    }
+    }}
     
 };
 
@@ -162,6 +159,9 @@ function render() {
         buttons[i].drawSide()
         }
         }
+    for (i = player.lifes; i > 0; i--) {
+    ctx.drawImage(lifesImage, (800 - (i * 50)), 750, 50, 50)
+    }
     if (door.status == 1){
     door.drawSide()}
 }
@@ -178,8 +178,7 @@ main();
 }
 
 
-
 function gamestart() {
     document.getElementById("menu").style.display = "none";
-    document.getElementById("game").style.display = "grid";}
+    document.getElementById("game").style.display = "inline";}
 
