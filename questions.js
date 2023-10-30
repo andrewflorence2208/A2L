@@ -5999,7 +5999,4 @@ const questions = [
     }, 
 ]
 
- function quiz() {
-     document.getElementById("tela_quiz").style.display = "inline"
-     
- }
+ 
