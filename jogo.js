@@ -181,5 +181,5 @@ main();
 
 function gamestart() {
     document.getElementById("menu").style.display = "none";
-    document.getElementById("game").style.display = "inline";}
+    document.getElementById("game").style.display = "grid";}
 
