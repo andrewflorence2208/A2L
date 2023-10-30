@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>INDEX</title>
-
+ 
     <link rel="stylesheet" href="stylesheet.css">
 
     <script src="script.js"></script>
+    <script src="jogo.js"></script>
  </head>
  <body>
 
@@ -22,14 +23,16 @@
       
       <div id="menu">
         
-        <a href="gameplay.php"><button type="button" id="bt_init">PLAY</button></a>
+        <a href="gameplay.php"><button type="button" onclick="gamestart()" id="bt_init">PLAY</button></a>
         <a><button type="button" id="bt_init" onclick="tutorial(0)">TUTORIAL</button></a>
         <a href="config.php"><button type="button" id="bt_init">CONFIG</button></a>
         <a href="credits.html"><button type="button" id="bt_init">CREDITS</button></a>
         
       </div>
       
-      <div></div>
+      <div id="game" style="display : none"> 
+      <canvas id="tela" width="400" height="400"><
+      </div>
 
       <div></div>
       <div></div>
