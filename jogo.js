@@ -152,3 +152,9 @@ var main = function () {
 
 main();
 }
+
+function gamestart() {
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("game").style.display = "inline";
+    draw();
+}
