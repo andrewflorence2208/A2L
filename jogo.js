@@ -183,6 +183,3 @@ function gamestart() {
     document.getElementById("menu").style.display = "none";
     document.getElementById("game").style.display = "inline";}
 
-function gamestart() {
-    document.getElementById("menu").style.display = "none";
-    document.getElementById("game").style.display = "inline";}
