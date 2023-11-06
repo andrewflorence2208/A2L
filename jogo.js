@@ -1,7 +1,12 @@
 var score = 0
 var gamestatus = 0
+var door = 0
+var player = 0
 function reload(){
     score += 100
+    door.status = 0
+    player.key_pieces = 0
+    player.lifes = 3
     draw();
     ctx.clearRect()}
 
