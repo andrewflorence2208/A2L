@@ -6,7 +6,6 @@
                 #tela {
                 width:auto;
                 height:100%;
-                background-color:grey ;
             }
         </style>
         <script>
@@ -15,13 +14,20 @@
             canvas.width = 800;
             canvas.height = 800;
             var ctx = canvas.getContext("2d");
-            var spawn = 0
-            var spawn2 = 0
+            var spawnx = 0
+            var spawny = 0
+            var button1spawnx = 0
+            var button1spawny = 0
+            var button2spawnx = 0
+            var button2spawny = 0
+            var button3spawnx = 0
+            var button3spawny = 0
+            var doorspawnx = 0
+            var doorspawny = 0
             var g = 4
             var mapa = []
-
             function plano_labirinto(){
-
+                
 
             var linhas = canvas.width
             var colunas = canvas.height
@@ -190,8 +196,20 @@
                                 sala.center[1]
                             );
                         }
-                        salas.push(sala);
-                        salas_final = salas[i]
+                        salas.push(sala)
+                        if (i == 3) {
+                            button1spawnx = salas[i].center[0] * g
+                            button1spawny = salas[i].center[1] * g
+                        } else if (i == 5) {
+                            button2spawnx = salas[i].center[0] * g
+                            button2spawny = salas[i].center[1] * g
+                        } else if (i == 4) {
+                            button3spawnx = salas[i].center[0] * g
+                            button3spawny = salas[i].center[1] * g
+                        } else if (i == 9) {
+                            doorspawnx = salas[i].center[0] * g
+                            doorspawny = salas[i].center[1] * g
+                        }
                     }
                 }
             }// inserir dados da sala na matriz salas caso não haja colisão entre salas
@@ -243,9 +261,10 @@
                     mapa[i].carveV(disY, x, y1);
                 }
             }
-            spawn = [salas[0].center[0] * g, salas[0].center[1] * g]
-            spawn2 = [salas[0].center[0] * g, salas[0].center[1] * g]   
-            console.log(salas_final.center[0])    
+            spawnx = salas[0].center[0] * g
+            spawny = salas[0].center[1] * g;
+            console.log(spawnx, spawny)
+            
         }
 
         function gerar() {
@@ -257,20 +276,18 @@
             for (var i = 0; i < salas.length; i++) {
                 salas[i].gerar();
             }
-
             } // gerar o mapa
             
 
         function render() {
                 makeGrid();
                 gerarSalas()
-                gerar()
-                ;
-            }
+                gerar();
+        }
             render();
             }
-            
-            
+
+
         function plano_jogo(){
             var playerImage = new Image();
             playerImage.src = "https://i.imgur.com/bhcTQVr.png"
@@ -294,13 +311,16 @@
             height: 10,
             lifes: 3,
             key_pieces: 3, 
-            x : spawn[0],
-            y : spawn[1]   
+            x : spawnx,
+            y : spawny   
+            
+                
+                
             }
             
             
             var playerColor = ctx.createImageData(player.width, player.height);
-            var buttonColor = 0
+            
             for (let i = 0; i < playerColor.data.length; i += 4) {
                 playerColor.data[i+0] = 255;
                 playerColor.data[i+1] = 0;
@@ -309,56 +329,37 @@
                 
                  
             }
+              
+
             class button  {
-                constructor(x, y, width, height) {
-                    this.x = x;
-                    this.y = y;
-                    this.width = width;
-                    this.height = height;
-                    this.status = 0
-                }
-                drawSide(){
-                buttonColor = ctx.createImageData(this.width, this.height);
-                for (let i = 0; i < buttonColor.data.length; i += 4) {
-                buttonColor.data[i+0] = 0;
-                buttonColor.data[i+1] = 255;
-                buttonColor.data[i+2] = 0;
-                buttonColor.data[i+3] = 255;   
-                };
-                ctx.fillStyle = "green";
-                ctx.beginPath();
-                ctx.fillRect(this.x,this.y,this.width,this.height);           
-                ctx.closePath();
-                ctx.fillRect(button.x,button.y,button.width,button.height);
-                }
-            }
-            
-            class square  {
-                constructor(x, y, width, height) {
+                constructor(x, y, width, height, status) {
                     this.x = x;
                     this.y = y;
                     this.width = width;
                     this.height = height
+                    this.status = status
+                }
+                drawSide(){
+                    ctx.fillStyle = "cyan"
+                ctx.fillRect(this.x,this.y,this.width,this.height);}
+            }
+
+            class square  {
+                constructor(x, y, width, height, squarecolor, status) {
+                    this.x = x;
+                    this.y = y;
+                    this.width = width;
+                    this.height = height
+                    this.color = squarecolor
+                    this.status = status
                 }
                 drawSide() {
-                    while (this.width != canvas.width ) {
-                this.width++
-                }
-                ctx.fillStyle = "green"
-                ctx.beginPath();
-                ctx.fillRect(this.x,this.y,this.width,this.height);           
-                ctx.closePath();
-                ctx.fillRect(button.x,button.y,button.width,button.height);
+                    ctx.fillStyle = this.color
+                    ctx.fillRect(this.x,this.y,this.width,this.height);           
                 }
             }
 
-            var top = new square(0, 0, 50, 50) 
-            var bottom = new square(0, canvas.height - 50, 50, 50)
-            var button1 = new button(spawn2[0], spawn2[1], 5, 5)
-
-            
-
-            
+            var buttons = [new button(button1spawnx, button1spawny, 15, 15, 0), new button(button2spawnx, button2spawny, 15, 15, 0), new button(button3spawnx, button3spawny, 15, 15, 0)]
 
 
             var keysDown = {};
@@ -386,37 +387,51 @@
                 if ("ArrowRight" in keysDown || "d" in keysDown) { // Player is holding right key
                     player.x += player.speed * modifier;
                 }
-                for (i = 0; i > mapa.length; i++){
-                        if(player.x+player.width >= mapa[i].x && 
-                    player.x <= mapa[i].x+g && 
-                    player.y <= mapa[i].y+g&& 
-                    player.y+player.height >= mapa[i].y){
-                        player.x = player.currentx
-                        player.y = player.currenty
-                        console.log("COLLISION")
-                        i++
-            }
-            }
-                
-                   
             };
             
-            button1.drawSide()
+        
+            var collision = function(){
+var color = "black";
+for (var i = 0; i < buttons.length; i++){
+    if(player.x+player.width >= buttons[i].x && 
+        player.x <= buttons[i].x+buttons[i].width && 
+        player.y <= buttons[i].y+buttons[i].height && 
+        player.y+player.height >= buttons[i].y){
+            color = "red"
+            ctx.clearRect(buttons[i].x, buttons[i].y, buttons[i].width, buttons[i].height)
+            buttons[i].x = -50
+            buttons[i].y = -50
+            console.log("collision")
            
+        }
+}
+
+        ctx.fillStyle = color;
+}
             
             
 
             var main = function () {
                 update(0.02);
-                
-                ctx.putImageData(playerColor, player.x, player.y);
+                ctx.clearRect(0, 0, canvas.width, canvas.height)
+                for (i = 0; i < buttons.length; i++){ 
+                    if (buttons[i].status == 0) {
+                    buttons[i].drawSide()
+                    }
+                    }
+                    collision()
+                ctx.fillRect(player.x, player.y , player.width, player.height);
                 requestAnimationFrame(main);
             }
             main()
-        }   
+        }
             plano_labirinto();
+            var img = new Image();
+            img.src = canvas.toDataURL('image/png')
+            const element = document.querySelector('#tela')
+            element.style.backgroundImage = 'url('+canvas.toDataURL("image/png")+')';
             plano_jogo()
-           
+            
         }
 
         
@@ -425,6 +440,5 @@
     <body onload="draw();">
         <div id="teste"><canvas id="tela" width="400" height="400"></canvas></div>
         <div id="tela_quiz"></div>
-        <div id="questionario"></div>
     
 </body></html>
