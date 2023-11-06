@@ -9,6 +9,12 @@
             }
         </style>
         <script>
+            var score = 0
+            var gamestatus = 0
+            function reload(){
+                score += 100
+                draw();
+                ctx.clearRect()}
             function draw() { //Movement test / Left
             var canvas  = document.getElementById("tela");
             canvas.width = 800;
@@ -310,7 +316,7 @@
             width: 10,
             height: 10,
             lifes: 3,
-            key_pieces: 3, 
+            key_pieces: 0, 
             x : spawnx,
             y : spawny   
             
@@ -360,7 +366,7 @@
             }
 
             var buttons = [new button(button1spawnx, button1spawny, 15, 15, 0), new button(button2spawnx, button2spawny, 15, 15, 0), new button(button3spawnx, button3spawny, 15, 15, 0)]
-
+            var door = new square(doorspawnx, doorspawny, 15, 15, "yellow", 0)
 
             var keysDown = {};
 
@@ -401,9 +407,22 @@ for (var i = 0; i < buttons.length; i++){
             ctx.clearRect(buttons[i].x, buttons[i].y, buttons[i].width, buttons[i].height)
             buttons[i].x = -50
             buttons[i].y = -50
+            player.key_pieces += 1
             console.log("collision")
-           
         }
+        if (player.key_pieces == 3) {
+             door.status = 1
+        } else {
+            door.status = 0
+        }
+        if(player.x+player.width >= door.x && 
+        player.x <= door.x+door.width && 
+        player.y <= door.y+door.height && 
+        player.y+player.height >= door.y && door.status == 1 ){
+            document.getElementById("tela_quiz").innerHTML = score + " " + "TESTE" + " " + player.lifes + " " + player.key_pieces + " " + gamestatus
+            reload()
+        }
+        ctx.fillStyle = color;
 }
 
         ctx.fillStyle = color;
@@ -421,6 +440,9 @@ for (var i = 0; i < buttons.length; i++){
                     }
                     collision()
                 ctx.fillRect(player.x, player.y , player.width, player.height);
+                if (player.key_pieces == 3) {
+                    door.drawSide()
+                }
                 requestAnimationFrame(main);
             }
             main()
@@ -428,7 +450,7 @@ for (var i = 0; i < buttons.length; i++){
             plano_labirinto();
             var img = new Image();
             img.src = canvas.toDataURL('image/png')
-            const element = document.querySelector('#tela')
+            const element = document.querySelector("#tela")
             element.style.backgroundImage = 'url('+canvas.toDataURL("image/png")+')';
             plano_jogo()
             
