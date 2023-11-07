@@ -58,10 +58,10 @@
                 
                 this.show = function() {
                     if (this.empty == false) {
-                        ctx.fillStyle = "#323232";
+                        ctx.fillStyle = "rgb(50,50,50,1)";
                         ctx.fillRect(this.x, this.y, g, g);
                     } else {
-                        ctx.fillStyle = "#696966";
+                        ctx.fillStyle = "rgb(105,105,102,1)";
                         ctx.fillRect(this.x, this.y, g, g);
                     }
                 }
@@ -206,10 +206,10 @@
                         if (i == 3) {
                             button1spawnx = salas[i].center[0] * g
                             button1spawny = salas[i].center[1] * g
-                        } else if (i == 5) {
+                        } else if (i == 7) {
                             button2spawnx = salas[i].center[0] * g
                             button2spawny = salas[i].center[1] * g
-                        } else if (i == 4) {
+                        } else if (i == 5) {
                             button3spawnx = salas[i].center[0] * g
                             button3spawny = salas[i].center[1] * g
                         } else if (i == 9) {
@@ -269,7 +269,6 @@
             }
             spawnx = salas[0].center[0] * g
             spawny = salas[0].center[1] * g;
-            console.log(spawnx, spawny)
             
         }
 
@@ -290,7 +289,7 @@
                 gerarSalas()
                 gerar();
         }
-            render();
+            render()
             }
 
 
@@ -318,23 +317,20 @@
             lifes: 3,
             key_pieces: 0, 
             x : spawnx,
-            y : spawny   
+            y : spawny,
+            currentx: 0,
+            currenty: 0,
+            drawSide() {
+                ctx.fillStyle = "green"
+                ctx.fillRect(this.x, this.y, this.width, this.height)
+            }   
             
                 
                 
             }
             
             
-            var playerColor = ctx.createImageData(player.width, player.height);
-            
-            for (let i = 0; i < playerColor.data.length; i += 4) {
-                playerColor.data[i+0] = 255;
-                playerColor.data[i+1] = 0;
-                playerColor.data[i+2] = 0;
-                playerColor.data[i+3] = 255;
-                
-                 
-            }
+            var playerColor = ctx.getImageData(player.x , player.y ,(player.width + 4), (player.height + 4));
               
 
             class button  {
@@ -380,7 +376,6 @@
             var update = function (modifier) {
                 player.currentx = player.x
                 player.currenty = player.y 
-                
                 if ("ArrowUp" in keysDown || "w" in keysDown) { // Player is holding up key
                     player.y -= player.speed * modifier;
                 }
@@ -393,40 +388,64 @@
                 if ("ArrowRight" in keysDown || "d" in keysDown) { // Player is holding right key
                     player.x += player.speed * modifier;
                 }
+               
             };
             
         
             var collision = function(){
-var color = "black";
-for (var i = 0; i < buttons.length; i++){
-    if(player.x+player.width >= buttons[i].x && 
-        player.x <= buttons[i].x+buttons[i].width && 
-        player.y <= buttons[i].y+buttons[i].height && 
-        player.y+player.height >= buttons[i].y){
-            color = "red"
-            ctx.clearRect(buttons[i].x, buttons[i].y, buttons[i].width, buttons[i].height)
-            buttons[i].x = -50
-            buttons[i].y = -50
-            player.key_pieces += 1
-            console.log("collision")
-        }
-        if (player.key_pieces == 3) {
-             door.status = 1
-        } else {
-            door.status = 0
-        }
-        if(player.x+player.width >= door.x && 
-        player.x <= door.x+door.width && 
-        player.y <= door.y+door.height && 
-        player.y+player.height >= door.y && door.status == 1 ){
-            document.getElementById("tela_quiz").innerHTML = score + " " + "TESTE" + " " + player.lifes + " " + player.key_pieces + " " + gamestatus
-            reload()
-        }
-        ctx.fillStyle = color;
+                var color = "black";
+                for (var i = 0; i < buttons.length; i++){
+                    if(player.x+player.width >= buttons[i].x && 
+                        player.x <= buttons[i].x+buttons[i].width && 
+                        player.y <= buttons[i].y+buttons[i].height && 
+                        player.y+player.height >= buttons[i].y){
+                            color = "red"
+                            player.x = player.currentx
+                            player.y = player.currenty
+                            ctx.clearRect(buttons[i].x, buttons[i].y, buttons[i].width, buttons[i].height)
+                            buttons[i].x = -50
+                            buttons[i].y = -50
+                            player.key_pieces += 1
+                            console.log("collision")
+                        }
+                    if (player.key_pieces == 3) {
+                        door.status = 1
+                    } else {
+                        door.status = 0
+                    }
+                    if(player.x+player.width >= door.x && 
+                        player.x <= door.x+door.width && 
+                        player.y <= door.y+door.height && 
+                        player.y+player.height >= door.y && door.status == 1 ){
+                            document.getElementById("tela_quiz").innerHTML = score + " " + "TESTE" + " " + player.lifes + " " + player.key_pieces + " " + gamestatus
+                            reload()
+                        }
+                    ctx.fillStyle = color;
+                    }
+                    for(var i = 0, n = playerColor.data.length; i < n; i += 4) {
+                        var red = playerColor.data[i];
+                        var green = playerColor.data[i + 1];
+                        var blue = playerColor.data[i + 2];
+                        var alpha = playerColor.data[i + 3];
+                    if(red==50 && green==50 && blue==50 && alpha==1){ 
+                        player.x=player.currentx
+                        player.y=player.currenty
+                        console.log("collision_wall")
+                    }
+                    for(var i = 0; i < mapa.length; i++){
+                            if (player.x+player.width >= mapa[i].x &&
+                            player.x <= mapa[i].x+4 &&
+                            player.y <= mapa[i].y+4 &&
+                            player.y+player.height >= mapa[i].y && mapa[i].empty == false) {
+                                player.x = player.currentx
+                                player.y = player.currenty
+                                console.log("collision")
+                            }
+                        
+                    }
+                        
 }
-
-        ctx.fillStyle = color;
-}
+            }
             
             
 
@@ -439,7 +458,7 @@ for (var i = 0; i < buttons.length; i++){
                     }
                     }
                     collision()
-                ctx.fillRect(player.x, player.y , player.width, player.height);
+                player.drawSide();
                 if (player.key_pieces == 3) {
                     door.drawSide()
                 }
@@ -448,12 +467,12 @@ for (var i = 0; i < buttons.length; i++){
             main()
         }
             plano_labirinto();
+            console.log(mapa)
             var img = new Image();
             img.src = canvas.toDataURL('image/png')
             const element = document.querySelector("#tela")
             element.style.backgroundImage = 'url('+canvas.toDataURL("image/png")+')';
-            plano_jogo()
-            
+            plano_jogo();
         }
 
         
