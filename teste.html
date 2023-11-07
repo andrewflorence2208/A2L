@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>INDEX</title>
+ 
+    <link rel="stylesheet" href="stylesheet.css">
+
+    <script src="script.js"></script>
+    <script src="jogo.js"></script>
+ </head>
+ <body>
+
+    <div id="initial_screen">
+      <div></div>
+      <div><img src="logo.png" id="logo"></div>
+      <div></div>
+
+      <div></div>
+      
+      <div id="menu">
+        
+        <a><button type="button" onclick="gamestart(); draw()" id="bt_init">PLAY</button></a>
+        <a><button type="button" id="bt_init" onclick="tutorial(0)">TUTORIAL</button></a>
+        <a href="config.php"><button type="button" id="bt_init">CONFIG</button></a>
+        <a href="credits.html"><button type="button" id="bt_init">CREDITS</button></a>
+        
+      </div>
+      
+      <div id="game" style="display : none"> 
+      <canvas id="tela" width="400" height="400">
+       <div id="player_data"></div>
+       <div id="quit_button"></div>
+      <div id="tela_quiz" style="display : none"></div>
+      </div>
+
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+
+  <!-- \\ CREDIT -- SCREEN: // -->
+
+  
+    <div id="credit_screen" style="display: none">
+    
+        <img src="logo.png" id="logo_credit">
+
+        <p id="credit_p"> 
+          <b>ANDRÉ FLORÊNCIO</b>
+          IDEALIZADOR, DIRETOR CRIATIVO, INTERFACE
+
+          <b>ARTHUR ANTUNES LONGO</b>
+          PROGRAMADOR
+
+          <b>LUIZ EDUARDO VELOSO TOQUIO</b>
+          AUXILIAR, PATROCINADOR
+          
+        </p>
+      
+ </body>
+</html>
