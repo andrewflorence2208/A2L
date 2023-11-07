@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <meta charset="UTF-8">
-        <style>
-                #tela {
-                width:auto;
-                height:100%;
-            }
-        </style>
-        <script>
             var score = 0
             var gamestatus = 0
             function reload(){
@@ -476,10 +465,3 @@
         }
 
         
-        </script>
-    </head>
-    <body onload="draw();">
-        <div id="teste"><canvas id="tela" width="400" height="400"></canvas></div>
-        <div id="tela_quiz"></div>
-    
-</body></html>
