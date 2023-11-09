@@ -1,130 +1,66 @@
 <!doctype html>
 <html lang="en">
+ <head>
+    <meta charset="utf-8">
 
-<head>
-  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>INDEX</title>
 
-  <title>INDEX</title>
+    <link rel="stylesheet" href="stylesheet.css">
 
-  <link rel="stylesheet" href="stylesheet.css">
+    <script src="script.js"></script>
+    <script src="teste_v2.js"></script>
+ </head>
+ <body>
 
-  <script src="script.js"></script>
-  <script src="teste_v2.js"></script>
-</head>
+    <div id="initial_screen">
+      <div></div>
+      <div><img src="logo.png" id="logo"></div>
+      <div></div>
 
-<body>
+      <div></div>
 
-  <div id="initial_screen">
-    <div></div>
-    <div><img src="logo.png" id="logo"></div>
-    <div></div>
+      <div id="menu">
 
-    <div></div>
+        <a><button type="button" onclick="gamestart(); draw()" id="bt_init">PLAY</button></a>
+        <a><button type="button" id="bt_init" onclick="tutorial(0)">TUTORIAL</button></a>
+        <a href="config.php"><button type="button" id="bt_init">CONFIG</button></a>
+        <a href="credits.html"><button type="button" id="bt_init">CREDITS</button></a>
 
-    <div id="menu">
+      </div>
 
-      <a><button type="button" onclick="gamestart(); draw()" id="bt_init">PLAY</button></a>
-      <a><button type="button" id="bt_init" onclick="tutorial(0)">TUTORIAL</button></a>
-      <a href="config.php"><button type="button" id="bt_init">CONFIG</button></a>
-      <a><button type="button" id="bt_init" onclick="credit()">CREDITS</button></a>
-
-    </div>
-
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-
-  <div id="gameplay_screen" style="display: none;">
-
-    <div></div>
-
-    <div id="game">
+      <div id="game" style="display : none"> 
       <canvas id="tela" width="400" height="400">
-        <div id="player_data"></div>
-        <div id="tela_quiz" style="display: none;"></div>
+       <div id="player_data"></div>
+       <div id="quit_button"></div>
+      <div id="tela_quiz" style="display : none"></div>
+      </div>
+
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
 
-    <div></div>
-
-  </div>
 
   <!-- \\ CREDIT -- SCREEN: // -->
 
 
-  <div id="credit_screen" style="display: none">
+    <div id="credit_screen" style="display: none">
 
-    <img src="logo.png" id="logo_credit">
+        <img src="logo.png" id="logo_credit">
 
-    <p id="credit_p">
-      <b>ANDRÉ FLORÊNCIO</b>
-      IDEALIZADOR, DIRETOR CRIATIVO, INTERFACE
+        <p id="credit_p"> 
+          <b>ANDRÉ FLORÊNCIO</b>
+          IDEALIZADOR, DIRETOR CRIATIVO, INTERFACE
 
-      <b>ARTHUR ANTUNES LONGO</b>
-      PROGRAMADOR
+          <b>ARTHUR ANTUNES LONGO</b>
+          PROGRAMADOR
 
-      <b>LUIZ EDUARDO VELOSO TOQUIO</b>
-      AUXILIAR, PATROCINADOR
+          <b>LUIZ EDUARDO VELOSO TOQUIO</b>
+          AUXILIAR, PATROCINADOR
 
-    </p>
-  </div>
+        </p>
 
-  <div id="quest_screen" style="display : none;">
-    <div></div>
-    <div id="quest">
-
-    </div>
-    <div></div>
-
-    <div></div>
-    <div id="quest_options">
-      <span id="span-option-1">
-        <button class="option-1-pushable" id="option-1-pushable" role="button">
-          <span class="option-1-shadow"></span>
-          <span class="option-1-edge"></span>
-          <span class="option-1-front" id="option-1 opt1">
-            
-          </span>
-        </button>
-      </span>
-
-      <span id="span-option-1">
-        <button class="option-1-pushable" id="option-1-pushable" role="button">
-          <span class="option-1-shadow"></span>
-          <span class="option-1-edge"></span>
-          <span class="option-1-front" id="option-1 opt2">
-            
-          </span>
-        </button>
-      </span>
-
-      <span id="span-option-1">
-        <button class="option-1-pushable" id="option-1-pushable" role="button">
-          <span class="option-1-shadow"></span>
-          <span class="option-1-edge"></span>
-          <span class="option-1-front" id="option-1 opt3">
-            
-          </span>
-        </button>
-      </span>
-
-      <span id="span-option-1">
-        <button class="option-1-pushable" id="option-1-pushable" role="button">
-          <span class="option-1-shadow"></span>
-          <span class="option-1-edge"></span>
-          <span class="option-1-front" id="option-1 opt4">
-            
-          </span>
-        </button>
-      </span>
-
-    </div>
-    <div></div>
-
-  </div>
-
-</body>
-
+ </body>
 </html>
