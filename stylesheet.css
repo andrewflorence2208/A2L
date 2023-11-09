@@ -97,7 +97,9 @@ img {
     
 }
 
-
+#gameplay_screen{
+    grid-template-columns: 1fr 1fr 1fr;
+}
 
 #quest{
     margin: auto;
