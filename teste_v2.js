@@ -6561,3 +6561,11 @@ function gamestart() {
             console.log("vidas acabaram")
             quit();
         }}
+function credits() {
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("credit_screen").style.display = "grid"
+}
+function creditsexit() {
+    document.getElementById("menu").style.display = "grid";
+    document.getElementById("credit_screen").style.display = "none"
+}
