@@ -2,6 +2,7 @@ var musgas = [
     'bitmusga.mp3',
     'quenteleite.mp3',
     'weekend.mp3',
+    'pink.mp3',
 ];
 
 var indiceAtual = 0;
