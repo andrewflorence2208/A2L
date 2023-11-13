@@ -5978,7 +5978,8 @@ var score = 0
 var lifes = 3
 function reload(){
     score += 100
-   
+    lifes = 3
+    console.log(score)
     draw();
     ctx.clearRect()
   }
@@ -6384,7 +6385,6 @@ var collision = function(){
             player.x <= door.x+door.width && 
             player.y <= door.y+door.height && 
             player.y+player.height >= door.y && door.status == 1 ){
-                document.getElementById("tela_quiz").innerHTML = score + " " + "TESTE" + " " + player.lifes + " " + player.key_pieces + " " + gamestatus
                 buttons[0].status = 0;
                 buttons[1].status = 0;
                 buttons[2].status = 0; 
@@ -6412,7 +6412,7 @@ var collision = function(){
 
 var main = function () {
     update(0.02);
-    document.getElementById("player_data").innerHTML = timer
+    document.getElementById("game_timer").innerHTML = timer
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     player.drawSide();
     for (i = 0; i < buttons.length; i++){ 
@@ -6421,12 +6421,30 @@ var main = function () {
         }
         }
         collision()
-    for (i = player.lifes; i > 0; i--) {
-        ctx.drawImage(lifesImage, (800 - (i * 50)), 750, 50, 50)
-    }
     if (door.status == 1) {
         door.drawSide()
     }
+    if (lifes == 3) {
+        document.getElementById("life3").style.display = "grid"
+        document.getElementById("life2").style.display = "grid"
+        document.getElementById("life1").style.display = "grid"
+    }
+    if (lifes == 2) {
+        document.getElementById("life3").style.display = "none"
+        document.getElementById("life2").style.display = "grid"
+        document.getElementById("life1").style.display = "grid"
+     }
+     if (lifes == 1) {
+         document.getElementById("life3").style.display = "none"
+         document.getElementById("life2").style.display = "none"
+         document.getElementById("life1").style.display = "grid"
+      }
+      if (lifes == 0) {
+         document.getElementById("life3").style.display = "none"
+         document.getElementById("life2").style.display = "none"
+         document.getElementById("life1").style.display = "none"
+      }
+
     requestAnimationFrame(main);
 }
 main()
@@ -6454,6 +6472,8 @@ function gamestart() {
     document.getElementById("menu").style.display = "none";
     document.getElementById("logo").style.display = "none";
     document.getElementById("gameplay_screen").style.display = "grid";
+    document.getElementById("player_data").style.display = "grid";
+    lifes = 3
 
     const elem = document.documentElement;
     if(elem.requestFullscreen){
@@ -6462,9 +6482,11 @@ function gamestart() {
     draw()};
     function quit() {
     document.getElementById("gameplay_screen").style.display = "none";
+    document.getElementById("error_screen").style.display = "none"
     document.getElementById("menu").style.display = "grid";
     document.getElementById("logo").style.display = "grid";
     document.getElementById("quest_screen").style.display = "none"
+    document.getElementById("player_data").style.display = "none"
     
     }
 
@@ -6472,6 +6494,7 @@ function gamestart() {
     
         document.getElementById("gameplay_screen").style.display = "none";
         document.getElementById("quest_screen").style.display = "grid";
+        document.getElementById("error_screen").style.display = "none"
     
         var slct_quest = Math.floor(Math.random() * (questions.length));
     
@@ -6526,7 +6549,8 @@ function gamestart() {
     function incorrect(){
         lifes -= 1;
         if (lifes != 0) {
-            questning();
+            document.getElementById("quest_screen").style.display = "none"
+            document.getElementById("error_screen").style.display = "grid";
         }else if (lifes == 0 ) {
             document.getElementById("gameplay_screen").style.display = "grid";
             document.getElementById("quest_screen").style.display = "none";
