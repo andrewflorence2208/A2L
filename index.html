@@ -1,144 +1,66 @@
 <!doctype html>
 <html lang="en">
+ <head>
+    <meta charset="utf-8">
 
-<head>
-  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>INDEX</title>
+ 
+    <link rel="stylesheet" href="stylesheet.css">
 
-  <title>INDEX</title>
+    <script src="script.js"></script>
+    <script src="jogo.js"></script>
+ </head>
+ <body>
 
-  <link rel="stylesheet" href="stylesheet.css">
+    <div id="initial_screen">
+      <div></div>
+      <div><img src="logo.png" id="logo"></div>
+      <div></div>
 
-  <script src="script.js"></script>
-  <script src="teste_v2.js"></script>
-  <script srt="musiquinhas.js"></script>
-</head>
+      <div></div>
+      
+      <div id="menu">
+        
+        <a><button type="button" onclick="gamestart(); draw()" id="bt_init">PLAY</button></a>
+        <a><button type="button" id="bt_init" onclick="tutorial(0)">TUTORIAL</button></a>
+        <a href="config.php"><button type="button" id="bt_init">CONFIG</button></a>
+        <a href="credits.html"><button type="button" id="bt_init">CREDITS</button></a>
+        
+      </div>
+      
+      <div id="game" style="display : none"> 
+      <canvas id="tela" width="400" height="400">
+       <div id="player_data"></div>
+       <div id="quit_button"></div>
+      <div id="tela_quiz" style="display : none"></div>
+      </div>
 
-<body >
-  <audio id="chumbo" controls onended="nextSong()">
-    <source src="bitmusga.mp3" type="audio/mp3">
-    <source src="quenteleite.mp3" type="audio/mp3">
-    <source src="weekend.mp3" type="audio/mp3">
-    <source src="pink.mp3" type="audio/mp3">
-    <source src="galaxy.mp3" type="audio/mp3">
-    <source src="atariwave.mp3" type="audio/mp3">
-    <source src="tyler.mp3" type="audio/mp3">
-    <source src="wind.mp3" type="audio/mp3">
-    <source src="cheese.mp3" type="audio/mp3">
-  </audio>
-  
-  <div id="initial_screen">
-    <div></div>
-    <div><img src="logo.png" id="logo"></div>
-    <div></div>
-
-    <div></div>
-
-    <div id="menu">
-
-      <a><button type="button" onclick="gamestart()" id="bt_init">PLAY</button></a>
-      <a><button type="button" id="bt_init" onclick="tutorial(0)">TUTORIAL</button></a>
-      <a href="config.php"><button type="button" id="bt_init">CONFIG</button></a>
-      <a><button type="button" id="bt_init" onclick="credit()">CREDITS</button></a>
-
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
 
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-
-  <div id="gameplay_screen" style="display: none;">
-
-    <div></div>
-
-    <div id="game">
-      <canvas id="tela" width="600" height="600">
-    </div>
-    <div id="player_data"></div>
-    <div id="tela_quiz" ></div>
-    <div id="quit_game">
-      <a><button type="button" id="bt_init" onclick="quit();">QUIT</button></a>
-    </div>
-
-
-  </div>
 
   <!-- \\ CREDIT -- SCREEN: // -->
 
+  
+    <div id="credit_screen" style="display: none">
+    
+        <img src="logo.png" id="logo_credit">
 
-  <div id="credit_screen" style="display: none">
+        <p id="credit_p"> 
+          <b>ANDRÉ FLORÊNCIO</b>
+          IDEALIZADOR, DIRETOR CRIATIVO, INTERFACE
 
-    <img src="logo.png" id="logo_credit">
+          <b>ARTHUR ANTUNES LONGO</b>
+          PROGRAMADOR
 
-    <p id="credit_p">
-      <b>ANDRÉ FLORÊNCIO</b>
-      IDEALIZADOR, DIRETOR CRIATIVO, INTERFACE
-
-      <b>ARTHUR ANTUNES LONGO</b>
-      PROGRAMADOR
-
-      <b>LUIZ EDUARDO VELOSO TOQUIO</b>
-      AUXILIAR, PATROCINADOR
-
-    </p>
-  </div>
-
-  <div id="quest_screen" style="display : none;">
-    <div></div>
-    <div id="quest">
-
-    </div>
-    <div></div>
-
-    <div></div>
-    <div id="quest_options">
-      <span id="span-option-1">
-        <button class="option-1-pushable" id="option-1-pushable opt1" role="button">
-          <span class="option-1-shadow"></span>
-          <span class="option-1-edge"></span>
-          <span class="option-1-front" id="option-1 opt1">
-            
-          </span>
-        </button>
-      </span>
-
-      <span id="span-option-1">
-        <button class="option-1-pushable" id="option-1-pushable opt2" role="button">
-          <span class="option-1-shadow"></span>
-          <span class="option-1-edge"></span>
-          <span class="option-1-front" id="option-1 opt2">
-            
-          </span>
-        </button>
-      </span>
-
-      <span id="span-option-1">
-        <button class="option-1-pushable" id="option-1-pushable opt3" role="button">
-          <span class="option-1-shadow"></span>
-          <span class="option-1-edge"></span>
-          <span class="option-1-front" id="option-1 opt3">
-            
-          </span>
-        </button>
-      </span>
-
-      <span id="span-option-1">
-        <button class="option-1-pushable" id="option-1-pushable opt4" role="button">
-          <span class="option-1-shadow"></span>
-          <span class="option-1-edge"></span>
-          <span class="option-1-front" id="option-1 opt4">
-            
-          </span>
-        </button>
-      </span>
-
-    </div>
-    <div></div>
-
-  </div>
-
-</body>
-
+          <b>LUIZ EDUARDO VELOSO TOQUIO</b>
+          AUXILIAR, PATROCINADOR
+          
+        </p>
+      
+ </body>
 </html>

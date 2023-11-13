@@ -1,4 +1,4 @@
-  @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
 * {
     margin: 0px;
@@ -281,4 +281,7 @@ img {
     font-size: 8vh;
 }
 
-
+#tela {
+    width:auto;
+    height:auto;
+      }
