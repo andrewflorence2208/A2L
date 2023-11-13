@@ -6314,23 +6314,23 @@ class button  {
     ctx.fillRect(this.x,this.y,this.width,this.height);}
 }
 
+doorimage = new Image()
+doorimage.src = "https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/door.png?raw=true"
 class square  {
-    constructor(x, y, width, height, squarecolor, status) {
+    constructor(x, y, width, height, status) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height
-        this.color = squarecolor
         this.status = status
     }
     drawSide() {
-        ctx.fillStyle = this.color
-        ctx.fillRect(this.x,this.y,this.width,this.height);           
+        ctx.drawImage(doorimage, this.x,this.y,this.width,this.height);           
     }
 }
 
 var buttons = [new button(button1spawnx, button1spawny, 15, 15, 0), new button(button2spawnx, button2spawny, 15, 15, 0), new button(button3spawnx, button3spawny, 15, 15, 0)]
-var door = new square(doorspawnx, doorspawny, 15, 15, "yellow", 0)
+var door = new square(doorspawnx, doorspawny, 15, 15, 0)
 
 var keysDown = {};
 
