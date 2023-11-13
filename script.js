@@ -9,10 +9,10 @@ function tutorial(count){
 };
 
 const tutorial_text = [
-    "The goal of the game is to finish mazes by answering quizes to open the door to the next maze, each maze has 3 quizes and a door, that need to be found by moving the character through the map",
-    "The character moves in 4 directions, controlled by the up, down, left and right keys by default (remappable in settings menu)",
-    "The quizzes that you need to complete are activated by moving your character model above pressure plates on the maze",
-    "There is only one correct answer for the question, you lose a life if you select the wrong answer, you have 3 lifes in total and lose all your score if you miss thrice."
+    "O objetivo do jogo é finalizar labirintos ao responder questionários que abrem a porta para o próximo labirinto, cada labirinto tem 3 questionários (botões azuis) e 1 porta (botão amarelo), que precisam ser encontrados movimentando o personagem principal",
+    "O personagem se move nas 4 direções cardinais e as diagonais, controlado pelas setas cima, baixo, esquerda e direita ou W, S, A, D no teclado, respectivamente",
+    "Os questionários são ativados ao mover o personagem por cima dos botões azuir",
+    "Há apenas uma resposta correta para cada questão, você possui 3 vidas e perde 1 para cada resposta errada selecionada, perdendo toda sua pontuação e voltando a tela inicial caso as vidas acabem"
 
 ];
 
