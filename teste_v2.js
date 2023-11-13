@@ -5980,6 +5980,7 @@ function reload(){
     score += 100
     lifes = 3
     console.log(score)
+    document.getElementById("game_score").innerHTML = "Score: " + score
     draw();
     ctx.clearRect()
   }
