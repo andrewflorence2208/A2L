@@ -5,6 +5,7 @@ var musgas = [
     'pink.mp3',
     'galaxy.mp3',
     'atariwave.mp3',
+    'tyler.mp3',
 ];
 
 var indiceAtual = 0;
