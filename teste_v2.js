@@ -5980,7 +5980,6 @@ function reload(){
     score += 100
     lifes = 3
     timer = 90
-    document.getElementById("game_score").innerHTML = "Score: " + score
     draw();
     ctx.clearRect()
   }
@@ -6413,6 +6412,7 @@ var collision = function(){
 
 var main = function () {
     update(0.02);
+    document.getElementById("game_score").innerHTML = "Score: " + score
     document.getElementById("game_timer").innerHTML = timer
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     player.drawSide();
