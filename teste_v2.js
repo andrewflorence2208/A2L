@@ -5978,7 +5978,7 @@ var score = 0
 var lifes = 3
 function reload(){
     score += 100
-   
+    console.log(score)
     draw();
     ctx.clearRect()
   }
