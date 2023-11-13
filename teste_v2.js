@@ -6489,7 +6489,7 @@ function gamestart() {
     document.getElementById("logo").style.display = "grid";
     document.getElementById("quest_screen").style.display = "none"
     document.getElementById("player_data").style.display = "none"
-    console.log("quit")
+    score = 0
         
     }
 
