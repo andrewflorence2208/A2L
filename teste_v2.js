@@ -1,4 +1,4 @@
-          const questions = [
+const questions = [
     //0 (Question 1)
     {
         action: "De onde é a invenção do chuveiro elétrico?",
