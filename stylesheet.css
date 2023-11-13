@@ -104,6 +104,22 @@ img {
     min-height: 200px;
 }
 
+#controlemusga {
+      margin: 00px 20%;
+      border: 5px solid #9B0A78;
+      border-radius: 36px;
+      padding: 10px;
+      background-color: #B92896;
+      height: 80%;
+
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+
+      /* max-width: 250px;*/
+      min-height: 200px;
+  }
+
 #quest_options {
     margin: 00px 20%;
     border: none;
