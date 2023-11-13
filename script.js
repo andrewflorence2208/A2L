@@ -4,7 +4,7 @@ function tutorial(){
     console.log("a")
 
     if(count>((tutorial_text.length)-1)){
-        document.getElementById("menu").innerHTML = '<a><button type="button" onclick="gamestart()" id="bt_init">PLAY</button></a><a><button type="button" id="bt_init" onclick="tutorial()">TUTORIAL</button></a><a><button type="button" id="bt_init">CONFIG</button></a><a><button type="button" id="bt_init" onclick="credit()">CREDITS</button></a>'
+        document.getElementById("menu").innerHTML = '<a><button type="button" onclick="gamestart()" id="bt_init">PLAY</button></a><a><button type="button" id="bt_init" onclick="tutorial()">TUTORIAL</button></a><a><button type="button" id="bt_init">CONFIG</button></a><a><button type="button" id="bt_init" onclick="credits()">CREDITS</button></a>'
         count = 0;
     };
 };
