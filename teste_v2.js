@@ -1,4 +1,4 @@
-     const questions = [
+    const questions = [
     //0 (Question 1)
     {
         action: "De onde é a invenção do chuveiro elétrico?",
@@ -5978,7 +5978,7 @@ var score = 0
 var lifes = 3
 function reload(){
     score += 100
-    console.log(score)
+   
     draw();
     ctx.clearRect()
   }
