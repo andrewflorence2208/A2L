@@ -16,7 +16,7 @@
 </head>
 
 <body >
-  <audio id="chumbo" controls onended="nextSong()">
+  <audio id="chumbo" onended="nextSong()">
     <source src="bitmusga.mp3" type="audio/mp3">
     <source src="quenteleite.mp3" type="audio/mp3">
     <source src="weekend.mp3" type="audio/mp3">
@@ -27,6 +27,14 @@
     <source src="wind.mp3" type="audio/mp3">
     <source src="cheese.mp3" type="audio/mp3">
   </audio>
+
+  <div id="controlemusga" style="display: none;">
+	  <button onclick="play()" id="muscascas1">Play</button>
+	  <button onclick="pause()" id="muscascas2">Pause</button>
+	  <button onclick="volumemais()" id="muscascas3">Aumentar volume</button>
+	  <button onclick="volumemenos()" id="muscascas4">Diminuir volume</button>
+    <button onclick="voltar()" id="bt_init3333">Voltar</button>
+	</div>
   
   <div id="initial_screen">
     <div></div>
