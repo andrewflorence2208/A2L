@@ -17,3 +17,8 @@ const tutorial_text = [
 ];
 
 var count = 1;
+
+function credit(){
+    document.getElementById("initial_screen").style.display = "none";
+    document.getElementById("credit_screen").style.display = "inline";
+}
