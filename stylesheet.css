@@ -156,34 +156,48 @@ img {
 
 #bt_init3333 {
       position: absolute;
-      top: 50%;
+      top: 10%;
       left: 50%;
       transform: translate(-50%, 900%);
+
+      width: 28vw;
+      height: 5.5vh;
+      min-height: 40px;
+
+      border-radius: 30px;
+      border: solid rgb(192, 194, 196);
+
+      background-color: rgb(212, 214, 216);
+
+      font-weight: bold;
   }
 
   #muscascas1 {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+      position: absolute;
+      top: 37%;
+      left: 50%;
+      transform: translate(-50%, -50%);
   }
+
   #muscascas2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+      position: absolute;
+      top: 43%;
+      left: 50%;
+      transform: translate(-50%, -50%);
   }
+
   #muscascas3 {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+      position: absolute;
+      top: 49%;
+      left: 50%;
+      transform: translate(-50%, -50%);
   }
+
   #muscascas4 {
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
   }
 
     /*BUTTON1*/
