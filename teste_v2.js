@@ -6453,6 +6453,7 @@ if ( document.getElementById("gameplay_screen") != "none") {
 clock = setInterval(function(){
     timer -= 1
     if (timer == 0) {
+        console.log("tempo acabou")
         quit();
     }
 }, 1000)} }
@@ -6556,5 +6557,6 @@ function gamestart() {
         }else if (lifes == 0 ) {
             document.getElementById("gameplay_screen").style.display = "grid";
             document.getElementById("quest_screen").style.display = "none";
+            console.log("vidas acabaram")
             quit();
         }}
