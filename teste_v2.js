@@ -6490,6 +6490,7 @@ function gamestart() {
     document.getElementById("quest_screen").style.display = "none"
     document.getElementById("player_data").style.display = "none"
     score = 0
+    draw();
         
     }
 
