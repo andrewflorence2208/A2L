@@ -1,13 +1,13 @@
 var musgas = [
-    'bitmusga.mp3',
-    'quenteleite.mp3',
-    'weekend.mp3',
-    'pink.mp3',
-    'galaxy.mp3',
-    'atariwave.mp3',
-    'tyler.mp3',
-    'wind.mp3',
-    'cheese.mp3',
+    'musica/bitmusga.mp3',
+    'musica/quenteleite.mp3',
+    'musica/weekend.mp3',
+    'musica/pink.mp3',
+    'musica/galaxy.mp3',
+    'musica/atariwave.mp3',
+    'musica/tyler.mp3',
+    'musica/wind.mp3',
+    'musica/cheese.mp3',
 ];
 
 var indiceAtual = 0;
