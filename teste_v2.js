@@ -5979,7 +5979,7 @@ var lifes = 3
 function reload(){
     score += 100
     lifes = 3
-    console.log(score)
+    timer = 90
     document.getElementById("game_score").innerHTML = "Score: " + score
     draw();
     ctx.clearRect()
@@ -5989,7 +5989,6 @@ playerImage.src = "https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main
 function draw() { //Movement test / Left
 
 var gamestatus = 0
-var clock = 0
 var spawnx = 0
 var spawny = 0
 var button1spawnx = 0
@@ -6389,6 +6388,7 @@ var collision = function(){
                 buttons[0].status = 0;
                 buttons[1].status = 0;
                 buttons[2].status = 0; 
+                clearInterval(clock)
                 reload();
             }
         ctx.fillStyle = color;
