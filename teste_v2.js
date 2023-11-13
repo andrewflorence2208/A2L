@@ -11,7 +11,7 @@
             canvas.width = 600;
             canvas.height = 600;
             var ctx = canvas.getContext("2d");
-            var timer = 40
+            var timer = 90
             var spawnx = 0
             var spawny = 0
             var button1spawnx = 0
