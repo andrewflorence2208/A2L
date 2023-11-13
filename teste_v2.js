@@ -1,14 +1,17 @@
             var score = 0
             var gamestatus = 0
+            var clock = 0
             function reload(){
+                clearInterval(clock)
                 score += 100
                 draw();
                 ctx.clearRect()}
             function draw() { //Movement test / Left
             var canvas  = document.getElementById("tela");
-            canvas.width = 800;
-            canvas.height = 800;
+            canvas.width = 600;
+            canvas.height = 600;
             var ctx = canvas.getContext("2d");
+            var timer = 40
             var spawnx = 0
             var spawny = 0
             var button1spawnx = 0
@@ -19,7 +22,7 @@
             var button3spawny = 0
             var doorspawnx = 0
             var doorspawny = 0
-            var g = 4
+            var g = 3
             var mapa = []
             function plano_labirinto(){
                 
@@ -36,7 +39,7 @@
 
             var disx
             var disy
-            var corredorLargura = 3
+            var corredorLargura = 4
 
             function parede(col, lin, x, y){
                 this.col = col
@@ -119,16 +122,12 @@
                 ];
                 
 
-                this.gerar = function() {
-                    
-                    ctx.fillStyle = "white";
-                    ctx.fillText(i, this.x + this.w / 2, this.y + this.h / 2 - 20);
-                };
+                
             } // gerar posição das salas do labirinto
             
             function gerarSalas() {
                 for (var i = 0; i < quantia; i++) {
-                    var sala = new Sala(
+                     sala = new Sala(
                         Math.floor(Math.random() * linhas) + 1,
                         Math.floor(Math.random() * colunas) + 1,
                         Math.floor(Math.random() * tamanho) + tamanhoMin,
@@ -267,9 +266,6 @@
                 mapa[i].show();
             }
 
-            for (var i = 0; i < salas.length; i++) {
-                salas[i].gerar();
-            }
             } // gerar o mapa
             
 
@@ -284,7 +280,9 @@
 
         function plano_jogo(){
             var playerImage = new Image();
-            playerImage.src = "https://i.imgur.com/bhcTQVr.png"
+            playerImage.src = "https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(5).png?raw=true"
+            var lifesImage = new Image()
+            lifesImage.src = "https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true"
 
             
         //geração dos corredores entre salas
@@ -311,15 +309,13 @@
             currenty: 0,
             drawSide() {
                 ctx.fillStyle = "green"
-                ctx.fillRect(this.x, this.y, this.width, this.height)
+                ctx.drawImage(playerImage, this.x, this.y, this.width, this.height)
             }   
             
                 
                 
             }
             
-            
-            var playerColor = ctx.getImageData(player.x , player.y ,(player.width + 4), (player.height + 4));
               
 
             class button  {
@@ -364,7 +360,10 @@
             }, false);
             var update = function (modifier) {
                 player.currentx = player.x
-                player.currenty = player.y 
+                player.currenty = player.y
+                if(document.getElementById("gameplay_screen").style.display != "none") {
+
+                
                 if ("ArrowUp" in keysDown || "w" in keysDown) { // Player is holding up key
                     player.y -= player.speed * modifier;
                 }
@@ -377,7 +376,7 @@
                 if ("ArrowRight" in keysDown || "d" in keysDown) { // Player is holding right key
                     player.x += player.speed * modifier;
                 }
-               
+            }
             };
             
         
@@ -394,9 +393,9 @@
                             ctx.clearRect(buttons[i].x, buttons[i].y, buttons[i].width, buttons[i].height)
                             buttons[i].x = -50
                             buttons[i].y = -50
-                            player.key_pieces += 1
-                            console.log("collision")
-                        }
+                            player.key_pieces += 1  
+                            player.lifes -= 1   
+                       }
                     if (player.key_pieces == 3) {
                         door.status = 1
                     } else {
@@ -411,16 +410,6 @@
                         }
                     ctx.fillStyle = color;
                     }
-                    for(var i = 0, n = playerColor.data.length; i < n; i += 4) {
-                        var red = playerColor.data[i];
-                        var green = playerColor.data[i + 1];
-                        var blue = playerColor.data[i + 2];
-                        var alpha = playerColor.data[i + 3];
-                    if(red==50 && green==50 && blue==50 && alpha==1){ 
-                        player.x=player.currentx
-                        player.y=player.currenty
-                        console.log("collision_wall")
-                    }
                     for(var i = 0; i < mapa.length; i++){
                             if (player.x+player.width >= mapa[i].x &&
                             player.x <= mapa[i].x+4 &&
@@ -434,34 +423,58 @@
                     }
                         
 }
-            }
+           
+            
             
             
 
             var main = function () {
                 update(0.02);
-                ctx.clearRect(0, 0, canvas.width, canvas.height)
+                document.getElementById("player_data").innerHTML = timer
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                player.drawSide();
                 for (i = 0; i < buttons.length; i++){ 
                     if (buttons[i].status == 0) {
                     buttons[i].drawSide()
                     }
                     }
                     collision()
-                player.drawSide();
+                for (i = player.lifes; i > 0; i--) {
+                    ctx.drawImage(lifesImage, (800 - (i * 50)), 750, 50, 50)
+                }
                 if (player.key_pieces == 3) {
                     door.drawSide()
                 }
                 requestAnimationFrame(main);
             }
             main()
+            if ( document.getElementById("gameplay_screen") != "none") {
+            clock = setInterval(function(){
+                timer -= 1
+                if (timer == 0) {
+                    quit();
+                }
+            }, 1000)} 
         }
             plano_labirinto();
-            console.log(mapa)
             var img = new Image();
-            img.src = canvas.toDataURL('image/png')
+            img.src = canvas.toDataURL('image/png');
             const element = document.querySelector("#tela")
             element.style.backgroundImage = 'url('+canvas.toDataURL("image/png")+')';
             plano_jogo();
         }
 
+        
+        function gamestart() {
+            document.getElementById("menu").style.display = "none";
+            document.getElementById("logo").style.display = "none";
+            document.getElementById("gameplay_screen").style.display = "grid";
+        }
+
+        function quit() {
+            document.getElementById("gameplay_screen").style.display = "none";
+            document.getElementById("menu").style.display = "grid";
+            document.getElementById("logo").style.display = "grid";
+
+        }
         
