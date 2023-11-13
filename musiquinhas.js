@@ -3,6 +3,8 @@ var musgas = [
     'quenteleite.mp3',
     'weekend.mp3',
     'pink.mp3',
+    'galaxy.mp3',
+    'atariwave.mp3',
 ];
 
 var indiceAtual = 0;
