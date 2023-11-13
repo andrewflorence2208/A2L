@@ -56,14 +56,19 @@
     <div id="game">
       <canvas id="tela" width="600" height="600">
     </div>
-    <div id="player_data"></div>
     <div id="tela_quiz" ></div>
     <div id="quit_game">
       <a><button type="button" id="bt_init" onclick="quit();">QUIT</button></a>
     </div>
-
-
   </div>
+  <div id="player_data" style="display: none;">
+    <div id="game_timer"></div>
+    LIFES:
+    <img id="life1" src="https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true" width="50" height="50"></img>
+    <img id="life2" src="https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true" width="50" height="50"></img>
+    <img id="life3" src="https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true" width="50" height="50"></img>
+  </div>
+  
 
   <!-- \\ CREDIT -- SCREEN: // -->
 
@@ -133,11 +138,17 @@
           </span>
         </button>
       </span>
-
-    </div>
-    <div></div>
-
   </div>
+</div>
+<div id="error_screen" style="display: none">
+  <div id="quest">Você errou a questão e perdeu uma vida, tente novamente</div>
+<button id="option-1-pushable" class="option-1-pushable" role="button" onclick="questning()">
+  <span class="option-1-shadow"></span>
+  <span class="option-1-edge"></span>
+  <span class="option-1-front" id="option-1"> 
+    Retornar ao quiz
+  </span></button></div>
+
 
 </body>
 
