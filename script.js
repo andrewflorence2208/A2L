@@ -1,5 +1,5 @@
 var count = 0;
-function tutorial(count){
+function tutorial(){
     document.getElementById("menu").innerHTML = tutorial_text[count] + "<button id='next_bt' onclick='tutorial(count++)'>NEXT</button>";
     console.log("a")
 
