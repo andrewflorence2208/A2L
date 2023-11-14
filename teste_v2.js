@@ -5980,8 +5980,8 @@ function reload() {
     score += 100
     lifes = 3
     timer = 90
+    ctx.clearRect();
     draw();
-    ctx.clearRect()
 }
 var playerImage = new Image();
 playerImage.src = "https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(5).png?raw=true"
@@ -6499,6 +6499,7 @@ function quit() {
     document.getElementById("logo").style.display = "grid";
     document.getElementById("quest_screen").style.display = "none";
     document.getElementById("player_data").style.display = "none";
+    ctx.clearRect()
     score = 0;
 
 }
