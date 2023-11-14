@@ -8,6 +8,15 @@ var musgas = [
     'musica/tyler.mp3',
     'musica/wind.mp3',
     'musica/cheese.mp3',
+    'musica/cumbuca.mp3',
+    'musica/xii.mp3',
+    'musica/fnaf1.mp3',
+    'musica/fnaf2.mp3',
+    'musica/fnaf3.mp3',
+    'musica/fnaf4.mp3',
+    'musica/fnaf5.mp3',
+    'musica/hide.mp3',
+    'musica/Below the Surface.mp3',
 ];
 
 var indiceAtual = 0;
