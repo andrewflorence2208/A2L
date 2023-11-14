@@ -38,21 +38,14 @@
     <source src="musica/Below the Surface.mp3" type="audio/mp3">
   </audio>
   
+
+<!-- \\ INITIAL SCREEN //-->
   <div id="initial_screen">
     <div></div>
     <div><img src="logo.png" id="logo"></div>
     <div></div>
 
     <div></div>
-
-	  <div id="controlemusga" style="display: none;">
-		<button onclick="play()" id="muscascas1">Play</button>
-		<button onclick="pause()" id="muscascas2">Pause</button>
-		<button onclick="volumemais()" id="muscascas3">Aumentar volume</button>
-		<button onclick="volumemenos()" id="muscascas4">Diminuir volume</button>
-		<button onclick="voltar()" id="bt_init3333">Voltar</button>
-	  </div>
-
     <div id="menu">
 
       <a><button type="button" onclick="gamestart(), play()" id="bt_init">PLAY</button></a>
@@ -61,37 +54,104 @@
       <a><button type="button" id="bt_init" onclick="credits()">CREDITS</button></a>
 
     </div>
+    <div></div>
 
     <div></div>
     <div></div>
     <div></div>
   </div>
 
-  <div id="gameplay_screen" style="display: none;">
 
-    <div></div>
+<!--\\ GAMEPLAY SCREEN //-->
+  <div id="gameplay_screen" style="display: none;">
 
     <div id="game">
       <canvas id="tela" width="600" height="600">
     </div>
-    <div id="tela_quiz" ></div>
-    <div id="quit_game">
-      <a><button type="button" id="bt_init" onclick="quit();">QUIT</button></a>
-    </div>
   </div>
-  <div id="player_data" style="display: none;">
-    <div id="game_timer"></div>
-    <div id="game_score">Score: 0</div>
-    LIFES:
-    <img id="life1" src="https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true" width="50" height="50"></img>
-    <img id="life2" src="https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true" width="50" height="50"></img>
-    <img id="life3" src="https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true" width="50" height="50"></img>
-  </div>
+    
+      
+    <div id="player_data" style="display: none;">
+      
+      <div id="tela_quiz" ></div>
   
+      <div id="game_timer"></div>
+      
+      <div id="game_score">Score: 0</div>
+      LIFES:
+      <img id="life1" src="https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true" width="50" height="50"></img>
+      <img id="life2" src="https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true" width="50" height="50"></img>
+      <img id="life3" src="https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true" width="50" height="50"></img>
 
-  <!-- \\ CREDIT -- SCREEN: // -->
+      <div id="quit_game">
+        <a><button type="button" id="bt_init" onclick="quit();">QUIT</button></a>
+      </div>
+    </div>
+  
+<!-- \\ QUEST SCREEN // -->
+<div id="quest_screen" style="display : none;">
+  <div></div>
+  <div id="quest">
 
+  </div>
+  <div></div>
 
+  <div></div>
+  <div id="quest_options">
+    <span id="span-option-1">
+      <button class="option-1-pushable" id="option-1-pushable opt1" role="button">
+        <span class="option-1-shadow"></span>
+        <span class="option-1-edge"></span>
+        <span class="option-1-front" id="option-1 opt1">
+          
+        </span>
+      </button>
+    </span>
+
+    <span id="span-option-1">
+      <button class="option-1-pushable" id="option-1-pushable opt2" role="button">
+        <span class="option-1-shadow"></span>
+        <span class="option-1-edge"></span>
+        <span class="option-1-front" id="option-1 opt2">
+          
+        </span>
+      </button>
+    </span>
+
+    <span id="span-option-1">
+      <button class="option-1-pushable" id="option-1-pushable opt3" role="button">
+        <span class="option-1-shadow"></span>
+        <span class="option-1-edge"></span>
+        <span class="option-1-front" id="option-1 opt3">
+          
+        </span>
+      </button>
+    </span>
+
+    <span id="span-option-1">
+      <button class="option-1-pushable" id="option-1-pushable opt4" role="button">
+        <span class="option-1-shadow"></span>
+        <span class="option-1-edge"></span>
+        <span class="option-1-front" id="option-1 opt4">
+          
+        </span>
+      </button>
+    </span>
+</div>
+</div>
+
+<div id="error_screen" style="display: none">
+<div id="quest">Você errou a questão e perdeu uma vida, tente novamente</div>
+<div>
+<button id="option-1-pushable" class="option-1-pushable" role="button" onclick="questning()">
+  <span class="option-1-shadow"></span>
+  <span class="option-1-edge"></span>
+  <span class="option-1-front" id="option-1"> 
+    Retornar ao quiz
+  </span></button></div>
+</div>
+
+<!-- \\ CREDIT -- SCREEN: // -->
   <div id="credit_screen" style="display: none">
 
     <img src="logo.png" id="logo_credit">
@@ -108,67 +168,6 @@
       <a><button type="button" id="bt_init" onclick="creditsexit()">SAIR</button></a>
     </p>
   </div>
-
-  <div id="quest_screen" style="display : none;">
-    <div></div>
-    <div id="quest">
-
-    </div>
-    <div></div>
-
-    <div></div>
-    <div id="quest_options">
-      <span id="span-option-1">
-        <button class="option-1-pushable" id="option-1-pushable opt1" role="button">
-          <span class="option-1-shadow"></span>
-          <span class="option-1-edge"></span>
-          <span class="option-1-front" id="option-1 opt1">
-            
-          </span>
-        </button>
-      </span>
-
-      <span id="span-option-1">
-        <button class="option-1-pushable" id="option-1-pushable opt2" role="button">
-          <span class="option-1-shadow"></span>
-          <span class="option-1-edge"></span>
-          <span class="option-1-front" id="option-1 opt2">
-            
-          </span>
-        </button>
-      </span>
-
-      <span id="span-option-1">
-        <button class="option-1-pushable" id="option-1-pushable opt3" role="button">
-          <span class="option-1-shadow"></span>
-          <span class="option-1-edge"></span>
-          <span class="option-1-front" id="option-1 opt3">
-            
-          </span>
-        </button>
-      </span>
-
-      <span id="span-option-1">
-        <button class="option-1-pushable" id="option-1-pushable opt4" role="button">
-          <span class="option-1-shadow"></span>
-          <span class="option-1-edge"></span>
-          <span class="option-1-front" id="option-1 opt4">
-            
-          </span>
-        </button>
-      </span>
-  </div>
-</div>
-<div id="error_screen" style="display: none">
-  <div id="quest">Você errou a questão e perdeu uma vida, tente novamente</div>
-<button id="option-1-pushable" class="option-1-pushable" role="button" onclick="questning()">
-  <span class="option-1-shadow"></span>
-  <span class="option-1-edge"></span>
-  <span class="option-1-front" id="option-1"> 
-    Retornar ao quiz
-  </span></button></div>
-
-
 </body>
 
 </html>

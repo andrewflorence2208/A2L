@@ -1,4 +1,4 @@
-    const questions = [
+const questions = [
     //0 (Question 1)
     {
         action: "De onde é a invenção do chuveiro elétrico?",
@@ -5976,347 +5976,332 @@
 
 var score = 0
 var lifes = 3
-function reload(){
+function reload() {
     score += 100
     lifes = 3
     timer = 90
     draw();
     ctx.clearRect()
-  }
+}
 var playerImage = new Image();
 playerImage.src = "https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(5).png?raw=true"
 function draw() { //Movement test / Left
 
-var gamestatus = 0
-var spawnx = 0
-var spawny = 0
-var button1spawnx = 0
-var button1spawny = 0
-var button2spawnx = 0
-var button2spawny = 0
-var button3spawnx = 0
-var button3spawny = 0
-var doorspawnx = 0
-var doorspawny = 0
-var g = 3
-var canvas  = document.getElementById("tela");
-canvas.width = 600;
-canvas.height = 600;
-var ctx = canvas.getContext("2d");
-var timer = 90;
-var player = {
-    speed: 128,
-    width: 10,
-    height: 10,
-    lifes: lifes,
-    key_pieces: 0, 
-    x : 0,
-    y : 0,
-    currentx: 0,
-    currenty: 0,
-    drawSide : 0   
-}
-
-player.drawSide = function() {
-    ctx.fillStyle = "green"
-    ctx.drawImage(playerImage, this.x, this.y, this.width, this.height)
-};
-
-var mapa = []
-function plano_labirinto(){
-    
-
-var linhas = canvas.width
-var colunas = canvas.height
-
-var salas = []
-var collide = false;
-
-var quantia = 10 // quantia de salas
-var tamanho = 20
-var tamanhoMin = 20 //tamanho das salas será entre tamanhoMin e tamanhoMin + tamanho
-
-var disx
-var disy
-var corredorLargura = 4
-
-function parede(col, lin, x, y){
-    this.col = col
-    this.lin = lin 
-    this.x = x
-    this.y = y 
-    this.empty = false //atributos dos blocos que formação a parede do labirinto 
-    
-    this.show = function() {
-        if (this.empty == false) {
-            ctx.fillStyle = "rgb(50,50,50,1)";
-            ctx.fillRect(this.x, this.y, g, g);
-        } else {
-            ctx.fillStyle = "rgb(105,105,102,1)";
-            ctx.fillRect(this.x, this.y, g, g);
-        }
+    var gamestatus = 0
+    var spawnx = 0
+    var spawny = 0
+    var button1spawnx = 0
+    var button1spawny = 0
+    var button2spawnx = 0
+    var button2spawny = 0
+    var button3spawnx = 0
+    var button3spawny = 0
+    var doorspawnx = 0
+    var doorspawny = 0
+    var g = 3
+    var canvas = document.getElementById("tela");
+    canvas.width = 600;
+    canvas.height = 600;
+    var ctx = canvas.getContext("2d");
+    var timer = 90;
+    var player = {
+        speed: 128,
+        width: 10,
+        height: 10,
+        lifes: lifes,
+        key_pieces: 0,
+        x: 0,
+        y: 0,
+        currentx: 0,
+        currenty: 0,
+        drawSide: 0
     }
-    
-    
-    this.carve = function(dis, x, y) {
-        for (var i = 0; i < salas.length; i++) {
-        if (
-            this.col >= salas[i].y / g &&
-            this.col < salas[i].y / g + salas[i].h / g &&
-            this.lin >= salas[i].x / g &&
-            this.lin  < salas[i].x / g + salas[i].w / g
-        ) {
-        this.empty = true;
+
+    player.drawSide = function () {
+        ctx.fillStyle = "green"
+        ctx.drawImage(playerImage, this.x, this.y, this.width, this.height)
+    };
+
+    var mapa = []
+    function plano_labirinto() {
+
+
+        var linhas = canvas.width
+        var colunas = canvas.height
+
+        var salas = []
+        var collide = false;
+
+        var quantia = 10 // quantia de salas
+        var tamanho = 20
+        var tamanhoMin = 20 //tamanho das salas será entre tamanhoMin e tamanhoMin + tamanho
+
+        var disx
+        var disy
+        var corredorLargura = 4
+
+        function parede(col, lin, x, y) {
+            this.col = col
+            this.lin = lin
+            this.x = x
+            this.y = y
+            this.empty = false //atributos dos blocos que formação a parede do labirinto 
+
+            this.show = function () {
+                if (this.empty == false) {
+                    ctx.fillStyle = "rgb(50,50,50,1)";
+                    ctx.fillRect(this.x, this.y, g, g);
+                } else {
+                    ctx.fillStyle = "rgb(105,105,102,1)";
+                    ctx.fillRect(this.x, this.y, g, g);
+                }
             }
-        }   
-    };// determinante de, caso parte do labirinto seja uma sala, não possuirá paredes
 
-    this.carveH = function(dis, x, y) {
-        if (
-        this.lin >= x &&
-        this.lin < x + dis &&
-        this.col < y + corredorLargura &&
-        this.col > y - corredorLargura
-    ) {
-    this.empty = true;
-    
+
+            this.carve = function (dis, x, y) {
+                for (var i = 0; i < salas.length; i++) {
+                    if (
+                        this.col >= salas[i].y / g &&
+                        this.col < salas[i].y / g + salas[i].h / g &&
+                        this.lin >= salas[i].x / g &&
+                        this.lin < salas[i].x / g + salas[i].w / g
+                    ) {
+                        this.empty = true;
+                    }
+                }
+            };// determinante de, caso parte do labirinto seja uma sala, não possuirá paredes
+
+            this.carveH = function (dis, x, y) {
+                if (
+                    this.lin >= x &&
+                    this.lin < x + dis &&
+                    this.col < y + corredorLargura &&
+                    this.col > y - corredorLargura
+                ) {
+                    this.empty = true;
+
+                }
+            };// determinante da geraçã dos corredores, caso certa coordenada seja um corredor, não será parede
+
+            this.carveV = function (dis, x, y) {
+                if (
+                    this.col >= y &&
+                    this.col < y + dis &&
+                    this.lin < x + corredorLargura &&
+                    this.lin > x - corredorLargura
+                ) {
+                    this.empty = true;
+
+                }
+            };//mesmo que anterior mas para outro eixo   
         }
-    };// determinante da geraçã dos corredores, caso certa coordenada seja um corredor, não será parede
 
-    this.carveV = function(dis, x, y) {
-        if (
-            this.col >= y &&
-            this.col < y + dis &&
-            this.lin < x + corredorLargura &&
-            this.lin > x - corredorLargura
-            ) {
-        this.empty = true;
-        
+        function makeGrid() {
+            for (var lin = 0; lin < linhas; lin++) {
+                for (var col = 0; col < colunas; col++) {
+                    var y = col * g;
+                    var x = lin * g;
+                    var cell = new parede(col, lin, x, y);
+                    mapa.push(cell);
+
+                }
             }
-    };//mesmo que anterior mas para outro eixo   
-}
 
-function makeGrid() {
-    for (var lin = 0; lin < linhas; lin++) {
-    for (var col = 0; col < colunas; col++) {
-        var y = col * g;
-        var x = lin * g;
-        var cell = new parede(col, lin, x, y);
-        mapa.push(cell);
-        
-    }
-    }
-    
-} // inserir dados das celulas individuais na matriz do mapa
+        } // inserir dados das celulas individuais na matriz do mapa
 
-function Sala(x, y, largura, altura, i) {
-    this.x = (x - 1) * g;
-    this.y = (y - 1) * g;
-    this.w = largura * g;
-    this.h = altura * g;
+        function Sala(x, y, largura, altura, i) {
+            this.x = (x - 1) * g;
+            this.y = (y - 1) * g;
+            this.w = largura * g;
+            this.h = altura * g;
 
-    this.center = [
-        Math.floor(this.x / g + largura / 2),
-        Math.floor(this.y / g + altura / 2)
-    ];
-    
+            this.center = [
+                Math.floor(this.x / g + largura / 2),
+                Math.floor(this.y / g + altura / 2)
+            ];
 
-    
-} // gerar posição das salas do labirinto
 
-function gerarSalas() {
-    for (var i = 0; i < quantia; i++) {
-         sala = new Sala(
-            Math.floor(Math.random() * linhas) + 1,
-            Math.floor(Math.random() * colunas) + 1,
-            Math.floor(Math.random() * tamanho) + tamanhoMin,
-            Math.floor(Math.random() * tamanho) + tamanhoMin,
-            i
-        );
-        
-    
-        
 
-        if (i > 0) {
-        if (
-            salas[0].x + salas[0].w >= canvas.width ||
-            salas[0].x <= 0 ||
-            salas[0].y + salas[0].h >= canvas.height ||
-            salas[0].y <= 0
-        ) {
-            salas = [];
-            gerarSalas();
-            break;
-        }
+        } // gerar posição das salas do labirinto
 
-        for (var e = 0; e < salas.length; e++) {
-            collide = false;
-
-            if (
-                sala.x <= salas[e].x + salas[e].w &&
-                sala.x + sala.w >= salas[e].x &&
-                sala.y <= salas[e].y + salas[e].h &&
-                sala.y + sala.h >= salas[e].y
-            ) {
-            collide = true;
-            i--;
-            break;
-        } else if (
-            sala.x + sala.w >= canvas.width ||
-            sala.x <= 0 ||
-            sala.y + sala.h >= canvas.height ||
-            sala.y <= 0
-        ) {
-        collide = true;
-        i--;
-        break;
-        }
-        }
-        }
-
-        if (collide == false) {
-            if (i > 0) {
-                hCorridor(
-                    salas[i - 1].center[0],
-                    sala.center[0],
-                    salas[i - 1].center[1],
-                    sala.center[1]
-            );
-                vCorridor(
-                    salas[i - 1].center[0],
-                    sala.center[0],
-                    salas[i - 1].center[1],
-                    sala.center[1]
+        function gerarSalas() {
+            for (var i = 0; i < quantia; i++) {
+                sala = new Sala(
+                    Math.floor(Math.random() * linhas) + 1,
+                    Math.floor(Math.random() * colunas) + 1,
+                    Math.floor(Math.random() * tamanho) + tamanhoMin,
+                    Math.floor(Math.random() * tamanho) + tamanhoMin,
+                    i
                 );
+
+
+
+
+                if (i > 0) {
+                    if (
+                        salas[0].x + salas[0].w >= canvas.width ||
+                        salas[0].x <= 0 ||
+                        salas[0].y + salas[0].h >= canvas.height ||
+                        salas[0].y <= 0
+                    ) {
+                        salas = [];
+                        gerarSalas();
+                        break;
+                    }
+
+                    for (var e = 0; e < salas.length; e++) {
+                        collide = false;
+
+                        if (
+                            sala.x <= salas[e].x + salas[e].w &&
+                            sala.x + sala.w >= salas[e].x &&
+                            sala.y <= salas[e].y + salas[e].h &&
+                            sala.y + sala.h >= salas[e].y
+                        ) {
+                            collide = true;
+                            i--;
+                            break;
+                        } else if (
+                            sala.x + sala.w >= canvas.width ||
+                            sala.x <= 0 ||
+                            sala.y + sala.h >= canvas.height ||
+                            sala.y <= 0
+                        ) {
+                            collide = true;
+                            i--;
+                            break;
+                        }
+                    }
+                }
+
+                if (collide == false) {
+                    if (i > 0) {
+                        hCorridor(
+                            salas[i - 1].center[0],
+                            sala.center[0],
+                            salas[i - 1].center[1],
+                            sala.center[1]
+                        );
+                        vCorridor(
+                            salas[i - 1].center[0],
+                            sala.center[0],
+                            salas[i - 1].center[1],
+                            sala.center[1]
+                        );
+                    }
+                    salas.push(sala)
+                    if (i == 3) {
+                        button1spawnx = salas[i].center[0] * g
+                        button1spawny = salas[i].center[1] * g
+                    } else if (i == 7) {
+                        button2spawnx = salas[i].center[0] * g
+                        button2spawny = salas[i].center[1] * g
+                    } else if (i == 5) {
+                        button3spawnx = salas[i].center[0] * g
+                        button3spawny = salas[i].center[1] * g
+                    } else if (i == 9) {
+                        doorspawnx = salas[i].center[0] * g
+                        doorspawny = salas[i].center[1] * g
+                    }
+                }
             }
-            salas.push(sala)
-            if (i == 3) {
-                button1spawnx = salas[i].center[0] * g
-                button1spawny = salas[i].center[1] * g
-            } else if (i == 7) {
-                button2spawnx = salas[i].center[0] * g
-                button2spawny = salas[i].center[1] * g
-            } else if (i == 5) {
-                button3spawnx = salas[i].center[0] * g
-                button3spawny = salas[i].center[1] * g
-            } else if (i == 9) {
-                doorspawnx = salas[i].center[0] * g
-                doorspawny = salas[i].center[1] * g
+        }// inserir dados da sala na matriz salas caso não haja colisão entre salas
+
+        function hCorridor(x1, x2, y1, y2) {
+            if (x1 > x2) {
+                disX = x1 - x2;
+                disX += 1;
+
+                for (var i = 0; i < mapa.length; i++) {
+                    mapa[i].carveH(disX, x2, y2);
+                }
+            } else {
+                disX = x2 - x1;
+                disX += 1;
+                for (var i = 0; i < mapa.length; i++) {
+                    mapa[i].carveH(disX, x1, y1);
+                }
             }
         }
+
+        function vCorridor(x1, x2, y1, y2) {
+            var x;
+
+            if (y1 > y2) {
+                disY = y1 - y2;
+                disY += 1;
+
+                if (x2 + (disX - 1) > x1 + (disX - 1)) {
+                    x = x2;
+                } else {
+                    x = x2 + (disX - 1);
+                }
+
+                for (var i = 0; i < mapa.length; i++) {
+                    mapa[i].carveV(disY, x, y2);
+                }
+            } else {
+                disY = y2 - y1;
+                disY += 1;
+
+                if (x1 + (disX - 1) > x2 + (disX - 1)) {
+                    x = x1;
+                } else {
+                    x = x1 + (disX - 1);
+                }
+
+                for (var i = 0; i < mapa.length; i++) {
+                    mapa[i].carveV(disY, x, y1);
+                }
+            }
+            spawnx = salas[0].center[0] * g
+            player.x = spawnx
+            spawny = salas[0].center[1] * g;
+            player.y = spawny
+
+        }
+
+        function gerar() {
+            for (var i = 0; i < mapa.length; i++) {
+                mapa[i].carve();
+                mapa[i].show();
+            }
+
+        } // gerar o mapa
+
+
+        function render() {
+            makeGrid();
+            gerarSalas()
+            gerar();
+        }
+        render()
     }
-}// inserir dados da sala na matriz salas caso não haja colisão entre salas
-
-function hCorridor(x1, x2, y1, y2) {
-    if (x1 > x2) {
-        disX = x1 - x2;
-        disX += 1;
-
-    for (var i = 0; i < mapa.length; i++) {
-        mapa[i].carveH(disX, x2, y2);
-    }
-    } else {
-        disX = x2 - x1;
-        disX += 1;
-        for (var i = 0; i < mapa.length; i++) {
-        mapa[i].carveH(disX, x1, y1);
-    }
-}
-}
-
-function vCorridor(x1, x2, y1, y2) {
-    var x;
-
-    if (y1 > y2) {
-        disY = y1 - y2;
-        disY += 1;
-
-    if (x2 + (disX - 1) > x1 + (disX - 1)) {
-        x = x2;
-    } else {
-        x = x2 + (disX - 1);
-    }
-
-    for (var i = 0; i < mapa.length; i++) {
-        mapa[i].carveV(disY, x, y2);
-    }
-    } else {
-        disY = y2 - y1;
-        disY += 1;
-
-    if (x1 + (disX - 1) > x2 + (disX - 1)) {
-        x = x1;
-    } else {
-        x = x1 + (disX - 1);
-    }
-
-    for (var i = 0; i < mapa.length; i++) {
-        mapa[i].carveV(disY, x, y1);
-    }
-}
-spawnx = salas[0].center[0] * g
-player.x = spawnx
-spawny = salas[0].center[1] * g;
-player.y = spawny
-
-}
-
-function gerar() {
-for (var i = 0; i < mapa.length; i++) {
-    mapa[i].carve();
-    mapa[i].show();
-}
-
-} // gerar o mapa
 
 
-function render() {
-    makeGrid();
-    gerarSalas()
-    gerar();
-}
-render()
-}
+    function plano_jogo() {
+        var lifesImage = new Image()
+        lifesImage.src = "https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true"
 
 
-function plano_jogo(){
-var lifesImage = new Image()
-lifesImage.src = "https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/pixil-frame-0%20(2).png?raw=true"
+        //geração dos corredores entre salas
+
+        // fim codigo do labirinto
 
 
-//geração dos corredores entre salas
-
-// fim codigo do labirinto
-
-
-var tela_quiz = {
-    pergunta: {},
-    respostas: {}
-}
-document.getElementById("tela_quiz").innerHTML = ""
+        var tela_quiz = {
+            pergunta: {},
+            respostas: {}
+        }
+        document.getElementById("tela_quiz").innerHTML = ""
 
 
 
-    
 
-  
 
-class button  {
-    constructor(x, y, width, height, status) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height
-        this.status = status
-    }
-    drawSide(){
-        ctx.fillStyle = "cyan"
-    ctx.fillRect(this.x,this.y,this.width,this.height);}
-}
 
-doorimage = new Image()
-doorimage.src = "https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/door.png?raw=true"
-class square  {
+
+class button {
     constructor(x, y, width, height, status) {
         this.x = x;
         this.y = y;
@@ -6325,7 +6310,23 @@ class square  {
         this.status = status
     }
     drawSide() {
-        ctx.drawImage(doorimage, this.x,this.y,this.width,this.height);           
+        ctx.fillStyle = "cyan"
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+}
+
+doorimage = new Image()
+doorimage.src = "https://github.com/andrewflorence2208/FINAL_PROJECT/blob/main/door.png?raw=true"
+class square {
+    constructor(x, y, width, height, status) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height
+        this.status = status
+    }
+    drawSide() {
+        ctx.drawImage(doorimage, this.x, this.y, this.width, this.height);
     }
 }
 
@@ -6340,234 +6341,243 @@ addEventListener("keydown", function (event) {
 
 addEventListener("keyup", function (event) {
     delete keysDown[event.key];
-}, false);
-var update = function (modifier) {
-    player.currentx = player.x
-    player.currenty = player.y
-    if(document.getElementById("gameplay_screen").style.display != "none") {
+        }, false);
 
-    
-    if ("ArrowUp" in keysDown || "w" in keysDown) { // Player is holding up key
-        player.y -= player.speed * modifier;
-    }
-    if ("ArrowDown" in keysDown || "s" in keysDown) { // Player is holding down key
-        player.y += player.speed * modifier;
-    }
-    if ("ArrowLeft" in keysDown || "a" in keysDown) { // Player is holding left key
-        player.x -= player.speed * modifier;
-    }
-    if ("ArrowRight" in keysDown || "d" in keysDown) { // Player is holding right key
-        player.x += player.speed * modifier;
-    }
-}
-};
+        var update = function (modifier) {
+            player.currentx = player.x
+            player.currenty = player.y
+            if (document.getElementById("gameplay_screen").style.display != "none") {
+                
+                
+                if ("ArrowUp" in keysDown || "w" in keysDown) { // Player is holding up key
+                    player.y -= player.speed * modifier;
+                }
+                if ("ArrowDown" in keysDown || "s" in keysDown) { // Player is holding down key
+                    player.y += player.speed * modifier;
+                }
+                if ("ArrowLeft" in keysDown || "a" in keysDown) { // Player is holding left key
+                    player.x -= player.speed * modifier;
+                }
+                if ("ArrowRight" in keysDown || "d" in keysDown) { // Player is holding right key
+                    player.x += player.speed * modifier;
+                }
+            }
+        };
 
 
-var collision = function(){
+
+
+var collision = function () {
     var color = "black";
-    for (var i = 0; i < buttons.length; i++){
-        if(player.x+player.width >= buttons[i].x && 
-            player.x <= buttons[i].x+buttons[i].width && 
-            player.y <= buttons[i].y+buttons[i].height && 
-            player.y+player.height >= buttons[i].y && buttons[i].status == 0){
+    for (var i = 0; i < buttons.length; i++) {
+        if (player.x + player.width >= buttons[i].x &&
+            player.x <= buttons[i].x + buttons[i].width &&
+            player.y <= buttons[i].y + buttons[i].height &&
+            player.y + player.height >= buttons[i].y && buttons[i].status == 0) {
                 color = "red"
                 buttons[i].status = 1
                 player.key_pieces += 1
                 questning()
-           }
-        if (player.key_pieces == 3) {
-            door.status = 1
-        } else {
-            door.status = 0
-        }
-        if(player.x+player.width >= door.x && 
-            player.x <= door.x+door.width && 
-            player.y <= door.y+door.height && 
-            player.y+player.height >= door.y && door.status == 1 ){
-                buttons[0].status = 0;
-                buttons[1].status = 0;
-                buttons[2].status = 0; 
-                clearInterval(clock)
-                reload();
             }
-        ctx.fillStyle = color;
-        }
-        for(var i = 0; i < mapa.length; i++){
-                if (player.x+player.width >= mapa[i].x &&
-                player.x <= mapa[i].x+4 &&
-                player.y <= mapa[i].y+4 &&
-                player.y+player.height >= mapa[i].y && mapa[i].empty == false) {
-                    player.x = player.currentx
-                    player.y = player.currenty
-
+            if (player.key_pieces == 3) {
+                door.status = 1
+            } else {
+                door.status = 0
+            }
+            if (player.x + player.width >= door.x &&
+                player.x <= door.x + door.width &&
+                player.y <= door.y + door.height &&
+                player.y + player.height >= door.y && door.status == 1) {
+                    buttons[0].status = 0;
+                    buttons[1].status = 0;
+                    buttons[2].status = 0;
+                    clearInterval(clock)
+                    reload();
                 }
-            
-        }
-            
+                ctx.fillStyle = color;
+            }
+            for (var i = 0; i < mapa.length; i++) {
+                if (player.x + player.width >= mapa[i].x &&
+                    player.x <= mapa[i].x + 4 &&
+                    player.y <= mapa[i].y + 4 &&
+                    player.y + player.height >= mapa[i].y && mapa[i].empty == false) {
+                        player.x = player.currentx
+                        player.y = player.currenty
+                        
+                    }
+                    
+                }
+                
 }
 
 
 
 
 
-var main = function () {
-    update(0.02);
-    document.getElementById("game_score").innerHTML = "Score: " + score
-    document.getElementById("game_timer").innerHTML = timer
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    player.drawSide();
-    for (i = 0; i < buttons.length; i++){ 
-        if (buttons[i].status == 0) {
-        buttons[i].drawSide()
+        var main = function () {
+            update(0.02);
+            document.getElementById("game_score").innerHTML = "Score: " + score
+            document.getElementById("game_timer").innerHTML = timer
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            player.drawSide();
+            for (i = 0; i < buttons.length; i++) {
+                if (buttons[i].status == 0) {
+                    buttons[i].drawSide()
+                }
+            }
+            collision()
+            if (door.status == 1) {
+                door.drawSide()
+            }
+            if (lifes == 3) {
+                document.getElementById("life3").style.display = "inline"
+                document.getElementById("life2").style.display = "inline"
+                document.getElementById("life1").style.display = "inline"
+            }
+            if (lifes == 2) {
+                document.getElementById("life3").style.display = "none"
+                document.getElementById("life2").style.display = "inline"
+                document.getElementById("life1").style.display = "inline"
+            }
+            if (lifes == 1) {
+                document.getElementById("life3").style.display = "none"
+                document.getElementById("life2").style.display = "none"
+                document.getElementById("life1").style.display = "inline"
+            }
+            if (lifes == 0) {
+                document.getElementById("life3").style.display = "none"
+                document.getElementById("life2").style.display = "none"
+                document.getElementById("life1").style.display = "none"
+            }
+
+            requestAnimationFrame(main);
         }
+        main()
+        if (document.getElementById("gameplay_screen") != "none") {
+            clock = setInterval(function () {
+                timer -= 1
+                if (timer == 0) {
+                    console.log("tempo acabou")
+                    clearInterval(clock)
+                    quit();
+                }
+            }, 1000)
         }
-        collision()
-    if (door.status == 1) {
-        door.drawSide()
     }
-    if (lifes == 3) {
-        document.getElementById("life3").style.display = "grid"
-        document.getElementById("life2").style.display = "grid"
-        document.getElementById("life1").style.display = "grid"
-    }
-    if (lifes == 2) {
-        document.getElementById("life3").style.display = "none"
-        document.getElementById("life2").style.display = "grid"
-        document.getElementById("life1").style.display = "grid"
-     }
-     if (lifes == 1) {
-         document.getElementById("life3").style.display = "none"
-         document.getElementById("life2").style.display = "none"
-         document.getElementById("life1").style.display = "grid"
-      }
-      if (lifes == 0) {
-         document.getElementById("life3").style.display = "none"
-         document.getElementById("life2").style.display = "none"
-         document.getElementById("life1").style.display = "none"
-      }
 
-    requestAnimationFrame(main);
-}
-main()
-if ( document.getElementById("gameplay_screen") != "none") {
-clock = setInterval(function(){
-    timer -= 1
-    if (timer == 0) {
-        console.log("tempo acabou")
-        clearInterval(clock)
-        quit();
-    }
-}, 1000)} }
+    plano_labirinto();
+    var img = new Image();
+    img.src = canvas.toDataURL('image/png');
+    const element = document.querySelector("#tela")
+    element.style.backgroundImage = 'url(' + canvas.toDataURL("image/png") + ')';
+    plano_jogo();
 
-plano_labirinto();
-var img = new Image();
-img.src = canvas.toDataURL('image/png');
-const element = document.querySelector("#tela")
-element.style.backgroundImage = 'url('+canvas.toDataURL("image/png")+')';
-plano_jogo();
 
-    
-    
+
 }
 
 
 function gamestart() {
-    document.getElementById("menu").style.display = "none";
-    document.getElementById("logo").style.display = "none";
+    document.getElementById("initial_screen").style.display = "none";
     document.getElementById("gameplay_screen").style.display = "grid";
     document.getElementById("player_data").style.display = "grid";
     lifes = 3
 
+//FULLSCREEN
     const elem = document.documentElement;
-    if(elem.requestFullscreen){
+    if (elem.requestFullscreen) {
         elem.requestFullscreen();
     }
-    draw()};
-    function quit() {
+
+    draw()
+};
+function quit() {
+    document.getElementById("initial_screen").style.display = "grid";
     document.getElementById("gameplay_screen").style.display = "none";
-    document.getElementById("error_screen").style.display = "none"
+    document.getElementById("error_screen").style.display = "none";
     document.getElementById("menu").style.display = "grid";
     document.getElementById("logo").style.display = "grid";
-    document.getElementById("quest_screen").style.display = "none"
-    document.getElementById("player_data").style.display = "none"
+    document.getElementById("quest_screen").style.display = "none";
+    document.getElementById("player_data").style.display = "none";
     score = 0
     draw();
-        
-    }
 
-    function questning() {
-    
-        document.getElementById("gameplay_screen").style.display = "none";
-        document.getElementById("quest_screen").style.display = "grid";
-        document.getElementById("error_screen").style.display = "none"
-    
-        var slct_quest = Math.floor(Math.random() * (questions.length));
-    
-        console.log(questions[slct_quest])
-        document.getElementById("quest").innerHTML = questions[slct_quest].action;
-    
-        document.getElementById("option-1 opt1").innerHTML = questions[slct_quest].opt1.text;
-    
-        document.getElementById("option-1 opt2").innerHTML = questions[slct_quest].opt2.text;
-    
-        document.getElementById("option-1 opt3").innerHTML = questions[slct_quest].opt3.text;
-    
-        document.getElementById("option-1 opt4").innerHTML = questions[slct_quest].opt4.text;
-    
-        const bt1 = document.getElementById("option-1-pushable opt1");
-        const bt2 = document.getElementById("option-1-pushable opt2");
-        const bt3 = document.getElementById("option-1-pushable opt3");
-        const bt4 = document.getElementById("option-1-pushable opt4");
-    
-    
-        if(questions[slct_quest].opt1.nextpoint === true){
-            bt1.setAttribute("onclick", "correct()");
-        }
-        else if(questions[slct_quest].opt1.nextpoint === false){
-            bt1.setAttribute("onclick", "incorrect()");
-        }
-        if(questions[slct_quest].opt2.nextpoint === true){
-            bt2.setAttribute("onclick", "correct()");
-        }
-        else if(questions[slct_quest].opt2.nextpoint === false){
-            bt2.setAttribute("onclick", "incorrect()");
-        }
-        if(questions[slct_quest].opt3.nextpoint === true){
-            bt3.setAttribute("onclick", "correct()");
-        }
-        else if(questions[slct_quest].opt3.nextpoint === false){
-            bt3.setAttribute("onclick", "incorrect()");
-        }
-        if(questions[slct_quest].opt4.nextpoint === true){
-            bt4.setAttribute("onclick", "correct()");
-        }
-        else if(questions[slct_quest].opt4.nextpoint === false){
-            bt4.setAttribute("onclick", "incorrect()");
-        }
-    };
-    
-    function correct(){
-        document.getElementById("gameplay_screen").style.display = "grid";
+}
+
+function questning() {
+
+    document.getElementById("gameplay_screen").style.display = "none";
+    document.getElementById("quest_screen").style.display = "grid";
+    document.getElementById("error_screen").style.display = "none";
+
+    var slct_quest = Math.floor(Math.random() * (questions.length));
+
+    console.log(questions[slct_quest])
+    document.getElementById("quest").innerHTML = questions[slct_quest].action;
+
+    document.getElementById("option-1 opt1").innerHTML = questions[slct_quest].opt1.text;
+
+    document.getElementById("option-1 opt2").innerHTML = questions[slct_quest].opt2.text;
+
+    document.getElementById("option-1 opt3").innerHTML = questions[slct_quest].opt3.text;
+
+    document.getElementById("option-1 opt4").innerHTML = questions[slct_quest].opt4.text;
+
+    const bt1 = document.getElementById("option-1-pushable opt1");
+    const bt2 = document.getElementById("option-1-pushable opt2");
+    const bt3 = document.getElementById("option-1-pushable opt3");
+    const bt4 = document.getElementById("option-1-pushable opt4");
+
+
+    if (questions[slct_quest].opt1.nextpoint === true) {
+        bt1.setAttribute("onclick", "correct()");
+    }
+    else if (questions[slct_quest].opt1.nextpoint === false) {
+        bt1.setAttribute("onclick", "incorrect()");
+    }
+    if (questions[slct_quest].opt2.nextpoint === true) {
+        bt2.setAttribute("onclick", "correct()");
+    }
+    else if (questions[slct_quest].opt2.nextpoint === false) {
+        bt2.setAttribute("onclick", "incorrect()");
+    }
+    if (questions[slct_quest].opt3.nextpoint === true) {
+        bt3.setAttribute("onclick", "correct()");
+    }
+    else if (questions[slct_quest].opt3.nextpoint === false) {
+        bt3.setAttribute("onclick", "incorrect()");
+    }
+    if (questions[slct_quest].opt4.nextpoint === true) {
+        bt4.setAttribute("onclick", "correct()");
+    }
+    else if (questions[slct_quest].opt4.nextpoint === false) {
+        bt4.setAttribute("onclick", "incorrect()");
+    }
+};
+
+function correct() {
+    document.getElementById("gameplay_screen").style.display = "grid";
+    document.getElementById("quest_screen").style.display = "none";
+};
+
+function incorrect() {
+    lifes -= 1;
+    if (lifes != 0) {
+        document.getElementById("quest_screen").style.display = "none"
+        document.getElementById("error_screen").style.display = "grid";
+    } else if (lifes == 0) {
+        document.getElementById("initial_screen").style.display = "grid";
         document.getElementById("quest_screen").style.display = "none";
-    };
-    
-    function incorrect(){
-        lifes -= 1;
-        if (lifes != 0) {
-            document.getElementById("quest_screen").style.display = "none"
-            document.getElementById("error_screen").style.display = "grid";
-        }else if (lifes == 0 ) {
-            document.getElementById("gameplay_screen").style.display = "grid";
-            document.getElementById("quest_screen").style.display = "none";
-            console.log("vidas acabaram")
-            clearInterval(clock)
-            quit();
-        }}
+        console.log("vidas acabaram")
+        clearInterval(clock)
+        quit();
+    }
+}
 function credits() {
-    document.getElementById("menu").style.display = "none";
-    document.getElementById("credit_screen").style.display = "grid"
+    document.getElementById("initial_screen").style.display = "none";
+    document.getElementById("credit_screen").style.display = "grid";
 }
 function creditsexit() {
-    document.getElementById("menu").style.display = "grid";
-    document.getElementById("credit_screen").style.display = "none"
+    document.getElementById("initial_screen").style.display = "grid";
+    document.getElementById("credit_screen").style.display = "none";
 }

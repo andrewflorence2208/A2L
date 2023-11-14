@@ -16,5 +16,3 @@ const tutorial_text = [
     "Há apenas uma resposta correta para cada questão, você possui 3 vidas e perde 1 para cada resposta errada selecionada, perdendo toda sua pontuação e voltando a tela inicial caso as vidas acabem"
 
 ];
-
-var count = 1;
