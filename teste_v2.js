@@ -6454,6 +6454,7 @@ clock = setInterval(function(){
     timer -= 1
     if (timer == 0) {
         console.log("tempo acabou")
+        clearInterval(clock)
         quit();
     }
 }, 1000)} }
@@ -6559,6 +6560,7 @@ function gamestart() {
             document.getElementById("gameplay_screen").style.display = "grid";
             document.getElementById("quest_screen").style.display = "none";
             console.log("vidas acabaram")
+            clearInterval(clock)
             quit();
         }}
 function credits() {
