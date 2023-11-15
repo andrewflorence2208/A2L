@@ -6501,6 +6501,7 @@ function quit() {
     document.getElementById("player_data").style.display = "none";
     ctx.clearRect()
     score = 0;
+    document.getElementById("game_score").innerHTML = "Score: " + score
 
 }
 
